@@ -1,0 +1,89 @@
+.interview-block {
+  .card {
+    background: #ffffff;
+    border: 1px solid #dfe7ef;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0px 4px 30px rgba(221, 224, 255, 0.54);
+    border-radius: 12px;
+    .card-header {
+      background: transparent;
+      border: none;
+      h3 {
+        font-size: 1.2rem;
+        margin: 0;
+        font-weight: 500;
+        font-family: Poppins, sans-serif;
+        span {
+          font-size: 0.75rem;
+        }
+      }
+    }
+    .card-body {
+      display: flex;
+      .slot-block {
+        display: grid;
+        grid-template-columns: repeat(11, 1fr);
+      }
+      .expired {
+        text-decoration: line-through;
+      }
+    }
+  }
+  .courses-block {
+    .card {
+      cursor: pointer;
+      .card-body {
+        padding-left: 10px;
+        padding-right: 10px;
+        .header {
+          h4{
+            font-size: 1rem;
+            color: #000;
+            font-weight: 500;
+            margin: 0;
+            font-family: Poppins, sans-serif;
+          }
+        }
+      }
+      .list-body {
+        ul {
+          padding: 0;
+          padding-left: 10px;
+          list-style: none;
+          li {
+            display: flex;
+            font-size: 15px;
+            font-weight: 400;
+            align-items: center;
+            padding: 5px 0;
+            font-family: Poppins, sans-serif;
+            i {
+              color: #3b82f6;
+              font-size: 16px;
+            }
+          }
+        }
+      }
+    }
+    .card-image {
+      max-height: 4rem;
+      max-width: 4rem;
+    }
+  }
+}
+::ng-deep .card-body {
+  .p-button {
+    font-size: 13px !important;
+    font-weight: 500;
+    font-family: Poppins, sans-serif;
+  }
+}
+::ng-deep .btn-block {
+  .p-button {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-family: Poppins, sans-serif;
+    font-weight: normal;
+  }
+}

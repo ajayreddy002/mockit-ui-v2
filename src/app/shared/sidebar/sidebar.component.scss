@@ -1,0 +1,101 @@
+.main-block {
+  .sidebar-block {
+    .logo-block {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem 0 1rem;
+      h1 {
+        font-size: 32px;
+        font-family: Poppins, sans-serif;
+        margin: 0;
+        font-weight: 600;
+        span {
+          color: #3b82f6;
+          font-family: "Poppins", sans-serif;
+        }
+      }
+    }
+    position: fixed;
+    height: 100%;
+    top: 0;
+    left: 0;
+    width: 15rem;
+    background: #ffffff;
+    border-right: 1px solid transparent;
+    box-shadow: 0px 4px 50px #d9ddfc;
+    .side-menu {
+      ul {
+        list-style: none;
+        padding: 0;
+        li {
+          a {
+            transition: background-color 0.2s, box-shadow 0.2s;
+            font-size: 0.857rem;
+            font-family: Poppins, sans-serif;
+            font-weight: normal;
+            cursor: pointer;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            display: inline-block;
+            width: 100%;
+            color: #1e293b;
+            &:hover {
+              background-color: #f6f9fc;
+            }
+            &.active {
+              background-color: #f6f9fc;
+              color: #1e293b;
+              font-weight: 700;
+            }
+          }
+          i {
+            margin-right: 0.5rem;
+            color: #3b82f6;
+          }
+        }
+      }
+    }
+  }
+  .sidebar-top {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .topbar-start {
+      display: flex;
+      align-items: center;
+      h4 {
+        margin: 0;
+      }
+      .menu-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 2rem;
+        border-radius: 50%;
+        width: 2.5rem;
+        height: 2.5rem;
+        flex-shrink: 0;
+        transition: background-color var(--transition-duration);
+        background-color: transparent;
+        border: none;
+        &:hover {
+          background-color: #6366f1;
+          color: #ffffff;
+        }
+      }
+    }
+    .topbar-end {
+      .profile-img {
+        border-radius: 50%;
+        width: 2rem;
+        height: 2rem;
+      }
+    }
+  }
+  .main-content-block {
+    margin-left: 15rem;
+    padding: 1rem;
+  }
+}

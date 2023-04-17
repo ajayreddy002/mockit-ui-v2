@@ -1,0 +1,22 @@
+.dashboard-block {
+  .empty-res-block {
+    h3 {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 19px;
+      margin: 30px 0;
+      color: #1f64ff;
+      font-family: Poppins, sans-serif;
+    }
+  }
+}
+.p-button {
+  color: #ffffff;
+  background: #6366f1;
+  border: 1px solid #6366f1;
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+    box-shadow 0.2s;
+  border-radius: 6px;
+}
