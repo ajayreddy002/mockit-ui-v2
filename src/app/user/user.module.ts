@@ -7,9 +7,28 @@ import { InterviewsComponent } from './interviews/interviews.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SharedModule } from '../shared/shared.module';
 import { LandingComponent } from './landing/landing.component';
+import { MyProfileComponent } from './my-profile/my-profile.component';
+
+//material
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card'
 
 @NgModule({
-  declarations: [InterviewsComponent, DashboardComponent, LandingComponent],
-  imports: [CommonModule, UserRoutingModule, SharedModule, FormsModule],
+  declarations: [InterviewsComponent, DashboardComponent, LandingComponent, MyProfileComponent],
+  imports: [
+    CommonModule,
+    UserRoutingModule,
+    SharedModule,
+    FormsModule,
+  
+    //material
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule,
+  ],
+  providers: [],
 })
-export class UserModule {}
+export class UserModule { }

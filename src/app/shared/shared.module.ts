@@ -6,10 +6,11 @@ import { CalendarModule } from 'primeng/calendar';
 
 import { SharedRoutingModule } from './shared-routing.module';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [SidebarComponent],
-  imports: [CommonModule, SharedRoutingModule, ButtonModule, AvatarModule, CalendarModule],
+  imports: [CommonModule, SharedRoutingModule, ButtonModule, AvatarModule, CalendarModule, ReactiveFormsModule],
   exports: [SidebarComponent, CalendarModule],
 })
 export class SharedModule {}

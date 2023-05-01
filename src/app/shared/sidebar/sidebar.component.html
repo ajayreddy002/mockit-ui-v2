@@ -6,21 +6,13 @@
     <div class="side-menu">
       <ul>
         <li>
-          <a
-            routerLink="/dashboard"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
+          <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
             <i class="pi pi-home" aria-hidden="true"></i>
             Dashboard
           </a>
         </li>
         <li>
-          <a
-            routerLink="/interview"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
+          <a routerLink="/interview" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
             <i class="pi pi-calendar" aria-hidden="true"></i>
             Interviews
           </a>
@@ -32,7 +24,7 @@
           </a>
         </li>
         <li>
-          <a>
+          <a routerLink="/profile" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
             <i class="pi pi-user" aria-hidden="true"></i>
             My Profile
           </a>
@@ -49,7 +41,8 @@
         <h4>Dashboard</h4>
       </div>
       <div class="topbar-end">
-        <p-avatar label="V" styleClass="mr-2" size="medium" [style]="{ 'background-color': '#2196F3', color: '#ffffff' }" shape="circle"></p-avatar>
+        <p-avatar label="V" styleClass="mr-2" size="medium"
+          [style]="{ 'background-color': '#2196F3', color: '#ffffff' }" shape="circle"></p-avatar>
       </div>
     </div>
     <router-outlet></router-outlet>
