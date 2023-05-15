@@ -1,31 +1,57 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ApiService } from '../service/api.service';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
-export class SignupComponent implements OnInit{
-  signupForm! : FormGroup;
+export class SignupComponent implements OnInit {
+  CandidateForm!: FormGroup;
+  InterviewerForm!: FormGroup;
   isSubmitted = false;
+  isInterveiwer = false;
 
-  constructor(private fb:FormBuilder){}
+  constructor(private fb: FormBuilder, private apiService: ApiService) { }
   ngOnInit(): void {
-    this.signupForm = this.fb.group({
-      userName: ["", Validators.required],
+    this.CandidateForm = this.fb.group({
+      name: ["", Validators.required],
       email: ["", Validators.required],
-      mobile: ["", Validators.required],
+      phoneNumber: ["", Validators.required],
+      password: ["", Validators.required],
+    })
+    this.InterviewerForm = this.fb.group({
+      name: ["", Validators.required],
+      email: ["", Validators.required],
+      phoneNumber: ["", Validators.required],
       password: ["", Validators.required],
     })
   }
 
-  submitSignup(){
-    if (this.signupForm.valid){
+  CandidateSignup() {
+    console.log(this.CandidateForm.value);
+    if (this.CandidateForm.valid) {
       this.isSubmitted = false;
-    }
-    else {
+      this.apiService.post("users/create", this.CandidateForm.value).subscribe((res) => {
+        console.log(res);
+      })
+    } else {
       this.isSubmitted = true;
     }
   }
+
+  InterviewerSignup() {
+    this.InterviewerForm.value.userRole = "interviewer";
+    console.log(this.InterviewerForm.value);
+    if (this.InterviewerForm.valid) {
+      this.isSubmitted = false;
+      this.apiService.post("users/create", this.InterviewerForm.value).subscribe((res) => {
+        console.log(res);
+      })
+    } else {
+      this.isSubmitted = true;
+    }
+  }
+
 }

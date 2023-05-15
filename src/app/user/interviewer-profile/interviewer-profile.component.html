@@ -1,0 +1,119 @@
+<!-- 
+<p-steps [model]="steps" [(activeIndex)]="activeIndex"></p-steps>
+<div *ngFor="let step of steps">
+    <p-panel header="{{ step.label }}">
+        <div class="p-fluid">
+            <form [formGroup]="form">
+                <div *ngIf="step.label === 'Step 1'">
+                    <div class="p-field">
+                        <label for="name">Name</label>
+                        <input id="name" type="text" pInputText formControlName="name">
+                    </div>
+                    <div class="p-field">
+                        <label for="email">Email</label>
+                        <input id="email" type="email" pInputText formControlName="email">
+                    </div>
+                </div>
+                <div *ngIf="step.label === 'Step 2'">
+                    <div class="p-field">
+                        <label for="address">Address</label>
+                        <input id="address" type="text" pInputText formControlName="address">
+                    </div>
+                    <div class="p-field">
+                        <label for="city">City</label>
+                        <input id="city" type="text" pInputText formControlName="city">
+                    </div>
+                    <div class="p-field">
+                        <label for="state">State</label>
+                        <input id="state" type="text" pInputText formControlName="state">
+                    </div>
+                    <div class="p-field">
+                        <label for="zip">Zip</label>
+                        <input id="zip" type="text" pInputText formControlName="zip">
+                    </div>
+                </div>
+                <div *ngIf="step.label === 'Step 3'">
+                    <div class="p-field">
+                        <label for="username">username</label>
+                        <input id="username" type="text" pInputText formControlName="username">
+                    </div>
+                    <div class="p-field">
+                        <label for="password">password</label>
+                        <input id="password" type="text" pInputText formControlName="password">
+                    </div>
+                    <div class="p-field">
+                        <label for="confirmPassword">confirmPassword</label>
+                        <input id="confirmPassword" type="text" pInputText formControlName="confirmPassword">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </p-panel>
+</div>
+
+<button pButton label="Submit" (click)="submit()"></button> -->
+
+
+<div class="container card p-5">
+    <form [formGroup]="form">
+        <div *ngIf="step == 1">
+            <h4>Personal Details</h4>
+            <div class="p-field">
+                <label for="name">Name</label>
+                <input id="name" type="text" pInputText formControlName="name">
+            </div>
+            <div class="p-field">
+                <label for="email">Email</label>
+                <input id="email" type="email" pInputText formControlName="email">
+            </div>
+        </div>
+        <div *ngIf="step == 2">
+            <h4>Educational Qualifications</h4>
+            <div class="p-field">
+                <label for="address">Address</label>
+                <input id="address" type="text" pInputText formControlName="address">
+            </div>
+            <div class="p-field">
+                <label for="city">City</label>
+                <input id="city" type="text" pInputText formControlName="city">
+            </div>
+            <div class="p-field">
+                <label for="state">State</label>
+                <input id="state" type="text" pInputText formControlName="state">
+            </div>
+            <div class="p-field">
+                <label for="zip">Zip</label>
+                <input id="zip" type="text" pInputText formControlName="zip">
+            </div>
+        </div>
+        <div *ngIf="step == 3">
+            <h4>Experiemce</h4>
+            <div class="p-field">
+                <label for="username">username</label>
+                <input id="username" type="text" pInputText formControlName="username">
+            </div>
+            <div class="p-field">
+                <label for="password">password</label>
+                <input id="password" type="text" pInputText formControlName="password">
+            </div>
+            <div class="p-field">
+                <label for="confirmPassword">confirmPassword</label>
+                <input id="confirmPassword" type="text" pInputText formControlName="confirmPassword">
+            </div>
+        </div>
+        <div *ngIf="step == 4">
+            <h4>Resume Upload</h4>
+        </div>
+        <div *ngIf="step == 5">
+            <h4>Interview Preference</h4>
+        </div>
+        <div *ngIf="step == 6">
+            <h4>Change Password</h4>
+        </div>
+        <div class="row text-end mt-3">
+            <p-button label="Previous" (click)="previous()" *ngIf="step != 1"></p-button>
+            <p-button label="Next" (click)="next()" *ngIf="step != 6"></p-button>
+            <p-button label="Submit" (click)="submit()" *ngIf="step == 6"></p-button>
+        </div>
+    </form>
+</div>

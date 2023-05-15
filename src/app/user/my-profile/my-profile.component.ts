@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class MyProfileComponent {
   isAccount = true;
-  url = "../../../assets/images/149071.png";
+  url = "https://sialifehospital.com/wp-content/uploads/2021/04/testimonial-1.png";
 
   onSelected(e:any) {
     if(e.target.files){
