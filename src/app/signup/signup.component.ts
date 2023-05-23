@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../service/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -10,10 +11,11 @@ import { ApiService } from '../service/api.service';
 export class SignupComponent implements OnInit {
   CandidateForm!: FormGroup;
   InterviewerForm!: FormGroup;
-  isSubmitted = false;
+  isCandidateSubmitted = false;
+  isInterviewerSubmitted = false;
   isInterveiwer = false;
 
-  constructor(private fb: FormBuilder, private apiService: ApiService) { }
+  constructor(private fb: FormBuilder, private apiService: ApiService, private router: Router) { }
   ngOnInit(): void {
     this.CandidateForm = this.fb.group({
       name: ["", Validators.required],
@@ -32,25 +34,27 @@ export class SignupComponent implements OnInit {
   CandidateSignup() {
     console.log(this.CandidateForm.value);
     if (this.CandidateForm.valid) {
-      this.isSubmitted = false;
+      this.isCandidateSubmitted = false;
       this.apiService.post("users/create", this.CandidateForm.value).subscribe((res) => {
         console.log(res);
       })
+      this.router.navigate(['/login'])
     } else {
-      this.isSubmitted = true;
+      this.isCandidateSubmitted = true;
     }
   }
-
+  
   InterviewerSignup() {
     this.InterviewerForm.value.userRole = "interviewer";
     console.log(this.InterviewerForm.value);
     if (this.InterviewerForm.valid) {
-      this.isSubmitted = false;
+      this.isInterviewerSubmitted = false;
       this.apiService.post("users/create", this.InterviewerForm.value).subscribe((res) => {
         console.log(res);
       })
+      this.router.navigate(['/login'])
     } else {
-      this.isSubmitted = true;
+      this.isInterviewerSubmitted = true;
     }
   }
 

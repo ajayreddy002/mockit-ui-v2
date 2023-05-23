@@ -1,119 +1,246 @@
-<!-- 
-<p-steps [model]="steps" [(activeIndex)]="activeIndex"></p-steps>
-<div *ngFor="let step of steps">
-    <p-panel header="{{ step.label }}">
-        <div class="p-fluid">
-            <form [formGroup]="form">
-                <div *ngIf="step.label === 'Step 1'">
-                    <div class="p-field">
-                        <label for="name">Name</label>
-                        <input id="name" type="text" pInputText formControlName="name">
-                    </div>
-                    <div class="p-field">
-                        <label for="email">Email</label>
-                        <input id="email" type="email" pInputText formControlName="email">
+<div class="container card px-5 pb-5 pt-3 ms-2">
+    <div *ngIf="step == 1">
+        <h2>Personal Details<span class="text-danger"> *</span></h2>
+        <form [formGroup]="pdForm">
+            <div class="row justify-content-evenly">
+                <div class="col-5 form-Group mb-3">
+                    <label for="fname">First Name<span class="text-danger"> *</span></label>
+                    <input id="fname" class="form-control" type="text" pInputText formControlName="fname">
+                    <p *ngIf="isStep1Valid && !pdForm.controls['fname'].touched && pdForm.controls['fname'].errors?.['required']"
+                        class="text-danger m-0 p-1">
+                        Please enter valid First Name
+                    </p>
+                    <p *ngIf="isStep1Valid && pdForm.controls['fname'].touched && pdForm.controls['fname'].errors?.['minlength']"
+                        class="text-danger m-0 p-1">
+                        First Name must contain atleast 3 characters
+                    </p>
+                </div>
+                <div class="col-5 form-Group mb-3">
+                    <label for="lname">Last Name<span class="text-danger"> *</span></label>
+                    <input id="lname" class="form-control" type="text" pInputText formControlName="lname">
+                    <p *ngIf="isStep1Valid && !pdForm.controls['lname'].touched  && pdForm.controls['lname'].errors?.['required']"
+                        class="text-danger m-0 p-1">
+                        Please enter valid Last Name
+                    </p>
+                    <p *ngIf="isStep1Valid && pdForm.controls['lname'].touched  && pdForm.controls['lname'].errors?.['minlength']"
+                        class="text-danger m-0 p-1">
+                        First Name must contain atleast 3 characters
+                    </p>
+                </div>
+            </div>
+            <div class="row justify-content-evenly">
+                <div class="col-5 form-group mb-3">
+                    <label for="email">Email<span class="text-danger"> *</span></label>
+                    <input id="email" type="email" class="form-control" InputText formControlName="email">
+                    <p *ngIf="isStep1Valid && !pdForm.controls['email'].touched && pdForm.controls['email'].errors?.['required']"
+                        class="text-danger m-0 p-1">
+                        Please enter valid email
+                    </p>
+                    <div *ngIf="pdForm.controls['email'].touched && pdForm.controls['email'].errors?.['pattern']"
+                        class="text-danger m-0 p-1">
+                        Invalid email format.
                     </div>
                 </div>
-                <div *ngIf="step.label === 'Step 2'">
-                    <div class="p-field">
-                        <label for="address">Address</label>
-                        <input id="address" type="text" pInputText formControlName="address">
-                    </div>
-                    <div class="p-field">
-                        <label for="city">City</label>
-                        <input id="city" type="text" pInputText formControlName="city">
-                    </div>
-                    <div class="p-field">
-                        <label for="state">State</label>
-                        <input id="state" type="text" pInputText formControlName="state">
-                    </div>
-                    <div class="p-field">
-                        <label for="zip">Zip</label>
-                        <input id="zip" type="text" pInputText formControlName="zip">
-                    </div>
+                <div class="col-5 form-group mb-2">
+                    <label for="mobile">Mobile No<span class="text-danger"> *</span></label>
+                    <input id="mobile" type="text" class="form-control" pInputText formControlName="mobile">
+                    <p *ngIf="isStep1Valid && !pdForm.controls['mobile'].touched && pdForm.controls['mobile'].errors?.['required']"
+                        class="text-danger m-0 p-1">
+                        Please enter valid Mobile Number
+                    </p>
+                    <p *ngIf="isStep1Valid && pdForm.controls['mobile'].touched && pdForm.controls['mobile'].errors?.['minlength']"
+                        class="text-danger m-0 p-1">
+                        Mobile Number must contain 10 numbers
+                    </p>
                 </div>
-                <div *ngIf="step.label === 'Step 3'">
-                    <div class="p-field">
-                        <label for="username">username</label>
-                        <input id="username" type="text" pInputText formControlName="username">
-                    </div>
-                    <div class="p-field">
-                        <label for="password">password</label>
-                        <input id="password" type="text" pInputText formControlName="password">
-                    </div>
-                    <div class="p-field">
-                        <label for="confirmPassword">confirmPassword</label>
-                        <input id="confirmPassword" type="text" pInputText formControlName="confirmPassword">
-                    </div>
+            </div>
+            <div class="row justify-content-evenly">
+                <div class="col-5 form-group mb-3">
+                    <label for="dob">Date of Birth<span class="text-danger"> *</span></label>
+                    <input id="dob" type="date" class="form-control" InputText formControlName="dob">
+                    <p *ngIf="isStep1Valid && pdForm.controls['dob'].errors'[required]'" class="text-danger m-0 p-1">
+                        Please choose valid Date of Birth
+                    </p>
                 </div>
-            </form>
-        </div>
-    </p-panel>
-</div>
-
-<button pButton label="Submit" (click)="submit()"></button> -->
-
-
-<div class="container card p-5">
-    <form [formGroup]="form">
-        <div *ngIf="step == 1">
-            <h4>Personal Details</h4>
-            <div class="p-field">
-                <label for="name">Name</label>
-                <input id="name" type="text" pInputText formControlName="name">
+                <div class="col-5 form-group mb-2">
+                    <label for="gender">Gender<span class="text-danger"> *</span></label>
+                    <select class="form-control" name="gender" id="gender" formControlName="gender">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="others">Others</option>
+                    </select>
+                    <p *ngIf="isStep1Valid && pdForm.controls['gender'].errors?.['required']" class="text-danger m-0 p-1">
+                        Please choose your Gender
+                    </p>
+                </div>
             </div>
-            <div class="p-field">
-                <label for="email">Email</label>
-                <input id="email" type="email" pInputText formControlName="email">
+            <div class="row justify-content-evenly">
+                <div class="col-5 form-group mb-3">
+                    <label for="address">Address<span class="text-danger"> *</span></label>
+                    <textarea id="address" formControlName="address" class="form-control" id="address"
+                        rows="3"></textarea>
+                    <p *ngIf="isStep1Valid && pdForm.controls['address'].errors'[required]'"
+                        class="text-danger m-0 p-1">
+                        Please enter valid Address
+                    </p>
+                </div>
+                <div class="col-5 form-group mb-2">
+                    <label for="languages">Languages Known</label>
+                    <select multiple class="form-control" id="languages" formControlName="languages">
+                        <option value="english">English</option>
+                        <option value="hindi">Hindi</option>
+                        <option value="telugu">Telugu</option>
+                        <option value="tamil">Tamil</option>
+                        <option value="kannada">Kannada</option>
+                        <option value="malayalam">Malayalam</option>
+                        <option value="punjabi">Punjabi</option>
+                        <option value="gujati">Gujarati</option>
+                        <option value="bengali">Bengali</option>
+                    </select>
+                </div>
             </div>
-        </div>
-        <div *ngIf="step == 2">
-            <h4>Educational Qualifications</h4>
-            <div class="p-field">
-                <label for="address">Address</label>
-                <input id="address" type="text" pInputText formControlName="address">
+        </form>
+    </div>
+    <div *ngIf="step == 2">
+        <h2>Educational Qualifications</h2>
+        <form [formGroup]="eqForm">
+            <div class="row justify-content-evenly">
+                <div class="col-3 form-group mb-3">
+                    <label for="college">College</label>
+                    <input id="college" type="text" class="form-control" InputText formControlName="college">
+                </div>
+                <div class="col-3 form-group mb-2">
+                    <label for="degree">Degree</label>
+                    <select class="form-control" id="degree" formControlName="degree">
+                        <option *ngFor="let degree of degrees" [value]="degree">{{ degree }}</option>
+                    </select>
+                </div>
+                <div class="col-3 form-group mb-2" *ngIf="eqForm.controls['degree'].value != 'Others'">
+                    <label for="course">Course</label>
+                    <select class="form-control" id="degree" formControlName="course">
+                        <option value="" disabled>Select a course</option>
+                        <option *ngFor="let course of getCoursesForDegree(eqForm.controls['degree'].value)"
+                            [value]="course">{{ course }}</option>
+                    </select>
+                </div>
+                <div class="col-3 form-group mb-2" *ngIf="eqForm.controls['degree'].value == 'Others'">
+                    <label for="course">Course</label>
+                    <input type="text" formControlName="course" id="coursr" InputText class="form-control"
+                        placeholder="Enter your course">
+                </div>
+                <div class="col-3 form-group mb-2">
+                    <label for="yop">Year of Passing</label>
+                    <input type="text" id="yop" formControlName="yop" InputText class="form-control">
+                </div>
             </div>
-            <div class="p-field">
-                <label for="city">City</label>
-                <input id="city" type="text" pInputText formControlName="city">
+            <div class="row justify-content-evenly">
+                <div class="col-12 form-group mb-3">
+                    <label for="achievements">Achievements</label>
+                    <textarea id="achievements" formControlName="achievements" class="form-control" id="achievements"
+                        rows="4"></textarea>
+                </div>
             </div>
-            <div class="p-field">
-                <label for="state">State</label>
-                <input id="state" type="text" pInputText formControlName="state">
+            <div class="row justify-content-evenly">
+                <div class="col-12 form-group mb-3">
+                    <label for="awards">Awards</label>
+                    <textarea id="awards" formControlName="awards" class="form-control" id="awards" rows="3"></textarea>
+                </div>
             </div>
-            <div class="p-field">
-                <label for="zip">Zip</label>
-                <input id="zip" type="text" pInputText formControlName="zip">
+            <div class="row justify-content-evenly">
+                <div class="col-12 form-group mb-3">
+                    <label for="additionalData">Additional Data</label>
+                    <textarea id="additionalData" formControlName="additionalData" class="form-control"
+                        id="additionalData" rows="2"></textarea>
+                </div>
             </div>
-        </div>
-        <div *ngIf="step == 3">
-            <h4>Experiemce</h4>
-            <div class="p-field">
-                <label for="username">username</label>
-                <input id="username" type="text" pInputText formControlName="username">
+        </form>
+    </div>
+    <div *ngIf="step == 3">
+        <h2>Experience</h2>
+        <form [formGroup]="expForm">
+            <div class="row justify-content-evenly">
+                <div class="col-5 form-group mb-3">
+                    <label for="title">Title</label>
+                    <input id="title" type="text" class="form-control" InputText formControlName="title">
+                </div>
+                <div class="col-5 form-group mb-3">
+                    <label for="company">Company</label>
+                    <input id="company" type="text" class="form-control" InputText formControlName="company">
+                </div>
             </div>
-            <div class="p-field">
-                <label for="password">password</label>
-                <input id="password" type="text" pInputText formControlName="password">
+            <div class="row justify-content-evenly">
+                <div class="col-11 px-4 form-group mb-3">
+                    <label for="jobSummary">Job Summary</label>
+                    <textarea id="jobSummary" formControlName="jobSummary" class="form-control" id="jobSummary"
+                        rows="4"></textarea>
+                </div>
             </div>
-            <div class="p-field">
-                <label for="confirmPassword">confirmPassword</label>
-                <input id="confirmPassword" type="text" pInputText formControlName="confirmPassword">
+            <div class="row justify-content-evenly">
+                <div class="col-5 form-group mb-3">
+                    <label for="experience">Total Experience(in Years)</label>
+                    <input id="experience" type="text" class="form-control" InputText formControlName="experience">
+                </div>
+                <div class="col-5 form-group mb-3">
+                    <label for="expertise">Expertise Details</label>
+                    <textarea id="expertise" formControlName="expertise" class="form-control" id="expertise"
+                        rows="2"></textarea>
+                </div>
             </div>
-        </div>
-        <div *ngIf="step == 4">
-            <h4>Resume Upload</h4>
-        </div>
-        <div *ngIf="step == 5">
-            <h4>Interview Preference</h4>
-        </div>
-        <div *ngIf="step == 6">
-            <h4>Change Password</h4>
-        </div>
-        <div class="row text-end mt-3">
-            <p-button label="Previous" (click)="previous()" *ngIf="step != 1"></p-button>
-            <p-button label="Next" (click)="next()" *ngIf="step != 6"></p-button>
-            <p-button label="Submit" (click)="submit()" *ngIf="step == 6"></p-button>
-        </div>
-    </form>
+        </form>
+    </div>
+    <div *ngIf="step == 4">
+        <h2>Resume Upload<span class="text-danger"> *</span></h2>
+        <form [formGroup]="rForm">
+            <div class="row ">
+                <div class="col-3 form-group mb-3">
+                    <label for="resume">Resume<span class="text-danger"> *</span></label>
+                    <input id="resume" type="file" class="form-control-file" InputText formControlName="resume">
+                    <p *ngIf="isStep1Valid && rForm.controls['resume'].errors'[required]'" class="text-danger m-0 p-1">
+                        Please upload your resume
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4 form-group mb-3">
+                    <label for="linkedIn">LinkedIn Url<span class="text-danger"> *</span></label>
+                    <input id="linkedIn" type="text" formControlName="linkedIn" class="form-control" id="linkedIn" />
+                    <p *ngIf="isStep4Valid && rForm.controls['linkedIn'].errors'[required]'"
+                        class="text-danger m-0 p-1">
+                        Please enter valid LinkedIn Id
+                    </p>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div *ngIf="step == 5">
+        <h2>Interview Preference<span class="text-danger"> *</span></h2>
+        <form [formGroup]="ipForm">
+            <div class="row">
+                <label for="interview" class="col-2">Interview Type<span class="text-danger"> *</span>: </label>
+                <div class="form-check form-check-inline col-2">
+                    <input class="form-check-input" type="checkbox" id="technical" value="technical"
+                        formControlName="interview">
+                    <label class="form-check-label" for="technical">Technical</label>
+                </div>
+                <div class="form-check form-check-inline col-2">
+                    <input class="form-check-input" type="checkbox" id="hr" value="hr" formControlName="interview">
+                    <label class="form-check-label" for="hr">HR</label>
+                </div>
+                <p *ngIf="isStep5Valid && ipForm.controls['interview'].errors'[required]'" class="text-danger m-0 p-1">
+                    Please choose interview preferance
+                </p>
+            </div>
+        </form>
+    </div>
+    <!-- <div *ngIf="step == 6">
+        <h4>Change Password</h4>
+    </div> -->
+    <div class="text-end mt-3">
+        <button class="btn btn-primary col-1 ms-2" style="background-color: #3b82f6;" (click)="previous()"
+            *ngIf="step != 1">Previous</button>
+        <button class="btn btn-primary col-1 ms-2" style="background-color: #3b82f6;" (click)="next()"
+            *ngIf="step != 5">Next</button>
+        <button class="btn btn-primary col-1 ms-2" style="background-color: #3b82f6;" (click)="submit()"
+            *ngIf="step == 5">Submit</button>
+    </div>
 </div>

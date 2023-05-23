@@ -15,8 +15,9 @@ export class LoginComponent implements OnInit {
   isSubmitted = false;
   constructor(
     private formBuilder: FormBuilder,
-    private apiService: ApiService
-  ) {}
+    private apiService: ApiService,
+    private router: Router
+  ) { }
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required],
@@ -27,8 +28,9 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.isSubmitted = false;
       this.apiService.post('users/login', this.loginForm.value).subscribe((data: any) => {
-          console.log(data);
-        });
+        localStorage.setItem('token', data.token)
+      });
+      this.router.navigate(['user'])
     }
     return (this.isSubmitted = true);
   }
