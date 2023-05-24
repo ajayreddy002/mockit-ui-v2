@@ -48,9 +48,9 @@
                         class="text-danger m-0 p-1">
                         Please enter valid Mobile Number
                     </p>
-                    <p *ngIf="isStep1Valid && pdForm.controls['mobile'].touched && pdForm.controls['mobile'].errors?.['minlength']"
+                    <p *ngIf="isStep1Valid && pdForm.controls['mobile'].touched && pdForm.controls['mobile'].errors?.['pattern']"
                         class="text-danger m-0 p-1">
-                        Mobile Number must contain 10 numbers
+                        Mobile Number must contain 10 digits and starts with 9, 8, 7 or 6.
                     </p>
                 </div>
             </div>

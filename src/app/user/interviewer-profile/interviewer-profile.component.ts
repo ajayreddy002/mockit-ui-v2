@@ -40,7 +40,7 @@ export class InterviewerProfileComponent implements OnInit {
       fname: ['', [Validators.required, Validators.minLength(3)]],
       lname: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)]],
-      mobile: ['', [Validators.required, Validators.minLength(10)]],
+      mobile: ['', [Validators.required, Validators.pattern(/^[9876]\d{9}$/)]],
       dob: ['', Validators.required],
       gender: ['', Validators.required],
       address: ['', Validators.required],
