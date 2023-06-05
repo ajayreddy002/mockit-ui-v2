@@ -6,35 +6,33 @@
     <div class="side-menu">
       <ul>
         <li>
-          <a
-            routerLink="/dashboard"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
+          <a routerLink="/user/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
             <i class="pi pi-home" aria-hidden="true"></i>
             Dashboard
           </a>
         </li>
         <li>
-          <a
-            routerLink="/interview"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
+          <a routerLink="/user/interview" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
             <i class="pi pi-calendar" aria-hidden="true"></i>
             Interviews
           </a>
         </li>
-        <li>
+        <li *ngIf="role != 'user'">
           <a>
             <i class="pi pi-share-alt" aria-hidden="true"></i>
             Refer and Earn
           </a>
         </li>
         <li>
-          <a>
+          <a routerLink="/user/profile" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
             <i class="pi pi-user" aria-hidden="true"></i>
             My Profile
+          </a>
+        </li>
+        <li *ngIf="role != 'user'">
+          <a routerLink="/user/interviewer" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <i class="pi pi-user-edit" aria-hidden="true"></i>
+            Interviewer Profile
           </a>
         </li>
       </ul>
@@ -49,7 +47,15 @@
         <h4>Dashboard</h4>
       </div>
       <div class="topbar-end">
-        <p-avatar label="V" styleClass="mr-2" size="medium" [style]="{ 'background-color': '#2196F3', color: '#ffffff' }" shape="circle"></p-avatar>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          <p-avatar label="V" styleClass="mr-2" size="medium"
+            [style]="{ 'background-color': '#2196F3', color: '#ffffff' }" shape="circle"></p-avatar>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="#" (click)="logout()">Logout</a></li>
+            </ul>
+        </div>
       </div>
     </div>
     <router-outlet></router-outlet>

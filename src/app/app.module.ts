@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
@@ -10,15 +10,21 @@ import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppInterceptor } from './helpers/http.interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
+import { ApiService } from './service/api.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent,LoginComponent, SignupComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    ToastModule
+    ToastModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
     MessageService,
@@ -32,6 +38,7 @@ import { ErrorInterceptor } from './helpers/error.interceptor';
       useClass: ErrorInterceptor,
       multi: true,
     },
+    ApiService
   ],
   bootstrap: [AppComponent],
 })
