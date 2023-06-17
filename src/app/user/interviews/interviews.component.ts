@@ -14,7 +14,7 @@ export class InterviewsComponent implements OnInit {
   minDate = new Date();
   today = new Date();
   isToday = true;
-  selectedSlot!: moment.Moment;
+  selectedSlot!: any;
   showCourses = false;
   ngOnInit(): void {
     this.getTimeSlots();
@@ -41,6 +41,8 @@ export class InterviewsComponent implements OnInit {
     this.getTimeSlots();
   }
   getSelectedSlot(slot: string){
-    this.selectedSlot = moment(slot);
+    console.log(slot)
+    // Need to add moment(slot) to get date string
+    this.selectedSlot = slot;
   }
 }

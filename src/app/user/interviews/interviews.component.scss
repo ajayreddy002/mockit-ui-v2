@@ -28,6 +28,11 @@
       .expired {
         text-decoration: line-through;
       }
+      .selected-slot {
+        .p-button{
+          background: #043004 !important;
+        }
+      }
     }
   }
   .courses-block {
@@ -77,6 +82,12 @@
     font-size: 13px !important;
     font-weight: 500;
     font-family: Poppins, sans-serif;
+  }
+  .selected-slot {
+    .p-button{
+      background: #043004 !important;
+      border: #043004 !important;
+    }
   }
 }
 ::ng-deep .btn-block {

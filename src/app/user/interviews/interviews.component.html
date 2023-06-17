@@ -28,7 +28,7 @@
               <div *ngFor="let slot of timeOptions" class="col-md-2 mb-2">
                 <p-button
                   *ngIf="slot.class !== 'expired'"
-                  [ngClass]="slot.class"
+                  [ngClass]="slot === selectedSlot ? 'selected-slot': ''"
                   [styleClass]="
                     isToday ? 'p-button-warning' : 'p-button-success'
                   "
