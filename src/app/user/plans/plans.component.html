@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="card col-8 px-5 pb-5 pt-3 ms-2">
+      <h1>Plans</h1>
+      <form [formGroup]="myForm" (ngSubmit)="submitForm()" class="my-form">
+        <div class="form-group mb-3">
+          <label for="category">Category :</label>
+          <!-- <input class="form-control" type="text" id="category" formControlName="category"> -->
+          <select name="category" id="category" class="form-control" formControlName="category">
+            <option selected name="category" value="" disabled>Choose...</option>
+            <option value="technical" name="category">Technical</option>
+            <option value="hr" name="category">HR</option>
+          </select>
+          <div class="text-danger" *ngIf="isValid && myForm.controls['category'].errors?.['required']">Category is
+            required.</div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="title">Title:</label>
+          <input class="form-control" type="text" id="title" formControlName="title">
+          <div class="text-danger" *ngIf="isValid && myForm.controls['title'].errors?.['required']">Title is required.
+          </div>
+          <div class="text-danger" *ngIf="isValid && myForm.controls['title'].errors?.['minlength']">Title must be at
+            least 5 characters long.</div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="duration">Duration:</label>
+          <input class="form-control" type="text" id="duration" formControlName="duration" [readOnly]="true" [disabled]="true">
+          <!-- <div class="text-danger" *ngIf="isValid && myForm.controls['duration'].errors?.['required']">Duration is
+            required.</div> -->
+          <!-- <div class="text-danger" *ngIf="isValid && myForm.controls['duration'].errors?.['min']">Duration must be a
+            positive number.</div> -->
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="objective">Description :</label>
+          <textarea id="objective" formControlName="objective" class="form-control"></textarea>
+          <div class="text-danger" *ngIf="isValid && myForm.controls['objective'].errors?.['required']">Objective is
+            required.</div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="programming">Programming:</label>
+          <!-- <input class="form-control" type="text" id="programming" formControlName="programming"> -->
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="programming" id="programming" value="yes" formControlName="programming">
+            <label class="form-check-label" for="exampleRadios1">
+              yes
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="programming" id="no" value="no" formControlName="programming">
+            <label class="form-check-label" for="no">
+             No
+            </label>
+            <div class="text-danger" *ngIf="isValid && myForm.controls['programming'].errors?.['required']">
+              Programming is required.</div>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="skills">Skills:</label>
+            <!-- <input class="form-control" type="text" id="skills" formControlName="skills"> -->
+            <!-- <p-chips [(ngModel)]="chipsValues" id="skills" formControlName="skills"></p-chips> -->
+            <div class="card p-fluid">
+              <p-chips [(ngModel)]="chipsValues" formControlName="skills">
+              </p-chips>
+          </div>
+            <div class="text-danger" *ngIf="isValid && myForm.controls['skills'].errors?.['required']">Skills are
+              required.</div>
+          </div>
+
+          <button type="submit" style="background-color: #3b82f6;"
+            class="btn btn-lg btn-primary float-end">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

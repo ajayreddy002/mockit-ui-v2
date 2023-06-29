@@ -12,6 +12,8 @@ export class SidebarComponent implements OnInit {
   token: any;
   role: any;
   decoded:any;
+  myTableData: any;
+  myTableColumns: any;
   constructor(private router: Router) {
     this.pathName = router.url.split('/')[1];
     // if (router.url.includes('interview')) {
