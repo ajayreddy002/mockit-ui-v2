@@ -11,7 +11,7 @@ export class AuthGuard implements CanActivate {
 
   canActivate(){
 
-    if(true){
+    if(localStorage.getItem('token') !== null){
       return true;
     }
      else{

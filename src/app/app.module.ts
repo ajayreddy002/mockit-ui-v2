@@ -14,9 +14,10 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { ApiService } from './service/api.service';
 import { HttpClientModule } from '@angular/common/http';
+import { SuccessComponent } from './transactions/success/success.component';
 
 @NgModule({
-  declarations: [AppComponent,LoginComponent, SignupComponent],
+  declarations: [AppComponent,LoginComponent, SignupComponent, SuccessComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

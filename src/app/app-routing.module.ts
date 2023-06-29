@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './service/auth.guard';
+import { SuccessComponent } from './transactions/success/success.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -13,6 +14,10 @@ const routes: Routes = [
     loadChildren: () =>
       import('./user/user.module').then((mod) => mod.UserModule), canActivate:[AuthGuard]
   },
+  {
+    path: 'success',
+    component: SuccessComponent
+  }
 ];
 
 @NgModule({
