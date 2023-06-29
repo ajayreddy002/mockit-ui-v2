@@ -5,6 +5,7 @@ import { InterviewsComponent } from './interviews/interviews.component';
 import { LandingComponent } from './landing/landing.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { InterviewerProfileComponent } from './interviewer-profile/interviewer-profile.component';
+import { PlansComponent } from './plans/plans.component';
 
 const routes: Routes = [
   {
@@ -14,7 +15,8 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'interview', component: InterviewsComponent },
       { path: 'profile', component: MyProfileComponent },
-      { path: 'interviewer', component: InterviewerProfileComponent }
+      { path: 'interviewer', component: InterviewerProfileComponent },
+      { path: 'plans', component: PlansComponent }
     ],
   },
 ];

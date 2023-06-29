@@ -7,9 +7,10 @@ import { CalendarModule } from 'primeng/calendar';
 import { SharedRoutingModule } from './shared-routing.module';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CommonTableComponent } from './common-table/common-table.component';
 
 @NgModule({
-  declarations: [SidebarComponent],
+  declarations: [SidebarComponent, CommonTableComponent],
   imports: [CommonModule, SharedRoutingModule, ButtonModule, AvatarModule, CalendarModule, ReactiveFormsModule],
   exports: [SidebarComponent, CalendarModule],
 })
