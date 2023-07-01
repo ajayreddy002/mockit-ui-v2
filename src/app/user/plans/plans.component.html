@@ -26,7 +26,7 @@
 
         <div class="form-group mb-3">
           <label for="duration">Duration:</label>
-          <input class="form-control" type="text" id="duration" formControlName="duration" [readOnly]="true" [disabled]="true">
+          <input class="form-control" type="text" id="duration" formControlName="duration" [readOnly]="true">
           <!-- <div class="text-danger" *ngIf="isValid && myForm.controls['duration'].errors?.['required']">Duration is
             required.</div> -->
           <!-- <div class="text-danger" *ngIf="isValid && myForm.controls['duration'].errors?.['min']">Duration must be a
@@ -60,13 +60,17 @@
 
           <div class="form-group mb-3">
             <label for="skills">Skills:</label>
-            <!-- <input class="form-control" type="text" id="skills" formControlName="skills"> -->
-            <!-- <p-chips [(ngModel)]="chipsValues" id="skills" formControlName="skills"></p-chips> -->
             <div class="card p-fluid">
               <p-chips [(ngModel)]="chipsValues" formControlName="skills">
               </p-chips>
           </div>
             <div class="text-danger" *ngIf="isValid && myForm.controls['skills'].errors?.['required']">Skills are
+              required.</div>
+          </div>
+          <div class="form-group mb-3">
+            <label for="skills">Price:</label>
+            <input class="form-control" type="number" id="title" formControlName="price">
+            <div class="text-danger" *ngIf="isValid && myForm.controls['price'].errors?.['required']">Price is
               required.</div>
           </div>
 

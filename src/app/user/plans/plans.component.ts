@@ -8,7 +8,7 @@ import { ApiService } from 'src/app/service/api.service';
   templateUrl: './plans.component.html',
   styleUrls: ['./plans.component.scss']
 })
-export class PlansComponent implements OnInit{
+export class PlansComponent implements OnInit {
 
   myForm!: FormGroup;
   isValid = false;
@@ -17,7 +17,7 @@ export class PlansComponent implements OnInit{
   constructor(
     private formBuilder: FormBuilder,
     private apiService: ApiService
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.myForm = this.formBuilder.group({
@@ -26,22 +26,23 @@ export class PlansComponent implements OnInit{
       duration: ['30min', [Validators.required]],
       objective: ['', Validators.required],
       programming: ['', Validators.required],
-      skills: ['', Validators.required]
+      skills: ['', Validators.required],
+      price: ['', Validators.required],
     });
   }
 
   submitForm() {
     if (this.myForm.valid) {
-      console.log(this.myForm.value);
+      this.myForm.get('programming')?.value === 'yes' ? this.myForm.get('programming')?.setValue(true) : this.myForm.get('programming')?.setValue(false)
       this.isValid = false;
-      this.apiService.post('common/plans', this.myForm.value).subscribe((res) => {
+      this.apiService.post('common/plan', this.myForm.value).subscribe((res) => {
         console.log(res);
       })
-      
+
     } else {
       console.log("form Invalid");
       this.isValid = true;
-      
+
     }
   }
 }

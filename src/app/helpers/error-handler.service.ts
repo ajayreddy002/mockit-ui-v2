@@ -7,7 +7,7 @@ import { MessageService } from 'primeng/api';
   providedIn: 'root',
 })
 export class ErrorHandlerService {
-  constructor(private messageService: MessageService, private router: Router) {}
+  constructor(private messageService: MessageService, private router: Router) { }
   public handleError(err: HttpErrorResponse) {
     let errorMessage: string;
     if (err.error instanceof ErrorEvent) {
@@ -21,11 +21,13 @@ export class ErrorHandlerService {
           break;
         case 401:
           errorMessage = 'You need to log in to do this action.';
+          localStorage.clear();
           this.router.navigate(['login']);
           break;
         case 403:
           errorMessage =
             "You don't have permission to access the requested resource.";
+          localStorage.clear();
           this.router.navigate(['login']);
           break;
         case 404:

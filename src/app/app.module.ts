@@ -15,6 +15,7 @@ import { SignupComponent } from './signup/signup.component';
 import { ApiService } from './service/api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SuccessComponent } from './transactions/success/success.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent,LoginComponent, SignupComponent, SuccessComponent],
@@ -25,7 +26,8 @@ import { SuccessComponent } from './transactions/success/success.component';
     BrowserAnimationsModule,
     ToastModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
   ],
   providers: [
     MessageService,
