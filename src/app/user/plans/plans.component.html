@@ -44,15 +44,17 @@
           <label for="programming">Programming:</label>
           <!-- <input class="form-control" type="text" id="programming" formControlName="programming"> -->
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="programming" id="programming" value="yes" formControlName="programming">
+            <input class="form-check-input" type="radio" name="programming" id="programming" value="yes"
+              formControlName="programming" [checked] = "myForm.controls['category'].value == 'technical'">
             <label class="form-check-label" for="exampleRadios1">
               yes
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="programming" id="no" value="no" formControlName="programming">
+            <input class="form-check-input" type="radio" name="programming" id="no" value="no"
+              formControlName="programming" [checked] = "myForm.controls['category'].value == 'hr'">
             <label class="form-check-label" for="no">
-             No
+              No
             </label>
             <div class="text-danger" *ngIf="isValid && myForm.controls['programming'].errors?.['required']">
               Programming is required.</div>
@@ -60,10 +62,13 @@
 
           <div class="form-group mb-3">
             <label for="skills">Skills:</label>
-            <div class="card p-fluid">
-              <p-chips [(ngModel)]="chipsValues" formControlName="skills">
-              </p-chips>
-          </div>
+            <div class="card">
+              <span class="p-fluid">
+                <p-autoComplete [(ngModel)]="selectedSkills" [suggestions]="filteredSkills"
+                  (completeMethod)="filterSkill($event)" field="label" [multiple]="true"
+                  formControlName="skills" [disabled]="myForm.controls['programming'].value == 'no'"> </p-autoComplete>
+              </span>
+            </div>
             <div class="text-danger" *ngIf="isValid && myForm.controls['skills'].errors?.['required']">Skills are
               required.</div>
           </div>
@@ -81,4 +86,3 @@
     </div>
   </div>
 </div>
-
