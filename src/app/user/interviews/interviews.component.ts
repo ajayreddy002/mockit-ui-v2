@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
+import { ApiService } from 'src/app/service/api.service';
+import { LoaderService } from 'src/app/service/loader.service';
 
 @Component({
   selector: 'app-interviews',
@@ -16,6 +18,9 @@ export class InterviewsComponent implements OnInit {
   isToday = true;
   selectedSlot!: any;
   showCourses = false;
+  planDetails: any;
+
+  constructor(private apiService: ApiService, private loaderService: LoaderService){}
   ngOnInit(): void {
     this.getTimeSlots();
   }
@@ -44,5 +49,18 @@ export class InterviewsComponent implements OnInit {
     console.log(slot)
     // Need to add moment(slot) to get date string
     this.selectedSlot = slot;
+  }
+
+  onSchedule() {
+    this.loaderService.showLoader();
+    this.showCourses = true;
+    this.apiService.get('common/plan').subscribe((res) => {
+      console.log(res);
+      this.planDetails = res;
+      this.loaderService.hideLoader();
+    }, (error) => {
+      console.log("Api Error: ", error);
+      this.loaderService.hideLoader();
+    })
   }
 }

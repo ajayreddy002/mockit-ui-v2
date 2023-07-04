@@ -16,9 +16,12 @@ import { ApiService } from './service/api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SuccessComponent } from './transactions/success/success.component';
 import { SharedModule } from './shared/shared.module';
+import { LoaderService } from './service/loader.service';
+import { LoaderComponent } from './shared/loader/loader.component';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
-  declarations: [AppComponent,LoginComponent, SignupComponent, SuccessComponent],
+  declarations: [AppComponent,LoginComponent, SignupComponent, SuccessComponent, LoaderComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -27,7 +30,8 @@ import { SharedModule } from './shared/shared.module';
     ToastModule,
     ReactiveFormsModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    ProgressSpinnerModule
   ],
   providers: [
     MessageService,
@@ -41,7 +45,8 @@ import { SharedModule } from './shared/shared.module';
       useClass: ErrorInterceptor,
       multi: true,
     },
-    ApiService
+    ApiService,
+    LoaderService
   ],
   bootstrap: [AppComponent],
 })

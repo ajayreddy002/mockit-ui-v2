@@ -2,7 +2,7 @@
   <div class="row justify-content-center">
     <div class="card col-8 px-5 pb-5 pt-3 ms-2">
       <h1>Plans</h1>
-      <form [formGroup]="myForm" (ngSubmit)="submitForm()" class="my-form">
+      <form [formGroup]="plansForm" (ngSubmit)="submitForm()" class="my-form">
         <div class="form-group mb-3">
           <label for="category">Category :</label>
           <!-- <input class="form-control" type="text" id="category" formControlName="category"> -->
@@ -11,32 +11,32 @@
             <option value="technical" name="category">Technical</option>
             <option value="hr" name="category">HR</option>
           </select>
-          <div class="text-danger" *ngIf="isValid && myForm.controls['category'].errors?.['required']">Category is
+          <div class="text-danger" *ngIf="isValid && plansForm.controls['category'].errors?.['required']">Category is
             required.</div>
         </div>
 
         <div class="form-group mb-3">
           <label for="title">Title:</label>
           <input class="form-control" type="text" id="title" formControlName="title">
-          <div class="text-danger" *ngIf="isValid && myForm.controls['title'].errors?.['required']">Title is required.
+          <div class="text-danger" *ngIf="isValid && plansForm.controls['title'].errors?.['required']">Title is required.
           </div>
-          <div class="text-danger" *ngIf="isValid && myForm.controls['title'].errors?.['minlength']">Title must be at
+          <div class="text-danger" *ngIf="isValid && plansForm.controls['title'].errors?.['minlength']">Title must be at
             least 5 characters long.</div>
         </div>
 
         <div class="form-group mb-3">
           <label for="duration">Duration:</label>
           <input class="form-control" type="text" id="duration" formControlName="duration" [readOnly]="true">
-          <!-- <div class="text-danger" *ngIf="isValid && myForm.controls['duration'].errors?.['required']">Duration is
+          <!-- <div class="text-danger" *ngIf="isValid && plansForm.controls['duration'].errors?.['required']">Duration is
             required.</div> -->
-          <!-- <div class="text-danger" *ngIf="isValid && myForm.controls['duration'].errors?.['min']">Duration must be a
+          <!-- <div class="text-danger" *ngIf="isValid && plansForm.controls['duration'].errors?.['min']">Duration must be a
             positive number.</div> -->
         </div>
 
         <div class="form-group mb-3">
-          <label for="objective">Description :</label>
-          <textarea id="objective" formControlName="objective" class="form-control"></textarea>
-          <div class="text-danger" *ngIf="isValid && myForm.controls['objective'].errors?.['required']">Objective is
+          <label for="description">Description :</label>
+          <textarea id="description" formControlName="description" class="form-control"></textarea>
+          <div class="text-danger" *ngIf="isValid && plansForm.controls['description'].errors?.['required']">description is
             required.</div>
         </div>
 
@@ -45,18 +45,18 @@
           <!-- <input class="form-control" type="text" id="programming" formControlName="programming"> -->
           <div class="form-check">
             <input class="form-check-input" type="radio" name="programming" id="programming" value="yes"
-              formControlName="programming" [checked] = "myForm.controls['category'].value == 'technical'">
+              formControlName="programming" [checked] = "plansForm.controls['category'].value == 'technical'">
             <label class="form-check-label" for="exampleRadios1">
               yes
             </label>
           </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="programming" id="no" value="no"
-              formControlName="programming" [checked] = "myForm.controls['category'].value == 'hr'">
+              formControlName="programming" [checked] = "plansForm.controls['category'].value == 'hr'">
             <label class="form-check-label" for="no">
               No
             </label>
-            <div class="text-danger" *ngIf="isValid && myForm.controls['programming'].errors?.['required']">
+            <div class="text-danger" *ngIf="isValid && plansForm.controls['programming'].errors?.['required']">
               Programming is required.</div>
           </div>
 
@@ -66,16 +66,16 @@
               <span class="p-fluid">
                 <p-autoComplete [(ngModel)]="selectedSkills" [suggestions]="filteredSkills"
                   (completeMethod)="filterSkill($event)" field="label" [multiple]="true"
-                  formControlName="skills" [disabled]="myForm.controls['programming'].value == 'no'"> </p-autoComplete>
+                  formControlName="skills" [disabled]="plansForm.controls['programming'].value == 'no'"> </p-autoComplete>
               </span>
             </div>
-            <div class="text-danger" *ngIf="isValid && myForm.controls['skills'].errors?.['required']">Skills are
+            <div class="text-danger" *ngIf="isValid && plansForm.controls['skills'].errors?.['required']">Skills are
               required.</div>
           </div>
           <div class="form-group mb-3">
-            <label for="skills">Price:</label>
-            <input class="form-control" type="number" id="title" formControlName="price">
-            <div class="text-danger" *ngIf="isValid && myForm.controls['price'].errors?.['required']">Price is
+            <label for="price">Price:</label>
+            <input class="form-control" type="number" id="price" formControlName="price">
+            <div class="text-danger" *ngIf="isValid && plansForm.controls['price'].errors?.['required']">Price is
               required.</div>
           </div>
 

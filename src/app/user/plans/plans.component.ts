@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/service/api.service';
+import { LoaderService } from 'src/app/service/loader.service';
 
 interface AutoCompleteCompleteEvent {
   originalEvent: Event;
@@ -14,7 +15,7 @@ interface AutoCompleteCompleteEvent {
 })
 export class PlansComponent implements OnInit {
 
-  myForm!: FormGroup;
+  plansForm!: FormGroup;
   isValid = false;
   allSkills = [
     { label: 'HTML', value: 'HTML' },
@@ -97,15 +98,17 @@ export class PlansComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private router: Router,
+    private loaderService: LoaderService
   ) { }
 
   ngOnInit() {
-    this.myForm = this.formBuilder.group({
+    this.plansForm = this.formBuilder.group({
       category: ['', Validators.required],
       title: ['', [Validators.required, Validators.minLength(5)]],
-      duration: ['30min', [Validators.required]],
-      objective: ['', Validators.required],
+      duration: ['30', [Validators.required]],
+      description: ['', Validators.required],
       programming: ['', Validators.required],
       skills: ['', Validators.required],
       price: ['', Validators.required],
@@ -125,16 +128,23 @@ export class PlansComponent implements OnInit {
   }
 
   submitForm() {
-    console.log(this.myForm.controls);
-    if (this.myForm.valid) {
-      this.myForm.get('programming')?.value === 'yes' ? this.myForm.get('programming')?.setValue(true) : this.myForm.get('programming')?.setValue(false)
+    this.loaderService.showLoader();
+    console.log(this.plansForm.controls);
+    if (this.plansForm.valid) {
+      this.plansForm.get('programming')?.value === 'yes' ? this.plansForm.get('programming')?.setValue(true) : this.plansForm.get('programming')?.setValue(false)
       this.isValid = false;
-      this.apiService.post('common/plan', this.myForm.value).subscribe((res) => {
+      this.apiService.post('common/plan', this.plansForm.value).subscribe((res) => {
         console.log(res);
+        this.loaderService.hideLoader();
+      }, (error) => {
+        console.log("Api Error: ", error);
+        this.loaderService.hideLoader();
       })
+      this.router.navigate(['/user/interview'])
     } else {
       console.log("form Invalid");
       this.isValid = true;
+      this.loaderService.hideLoader();
     }
   }
 }

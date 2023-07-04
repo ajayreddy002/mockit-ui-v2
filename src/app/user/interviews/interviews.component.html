@@ -3,13 +3,8 @@
     <div class="card d-flex justify-content-center align-items-center">
       <div>
         <label for="selectDate" class="me-3">Select Date:</label>
-        <p-calendar
-          [(ngModel)]="date"
-          id="selectDate"
-          [showIcon]="true"
-          [minDate]="minDate"
-          (onSelect)="getSelectedDate($event)"
-        ></p-calendar>
+        <p-calendar [(ngModel)]="date" id="selectDate" [showIcon]="true" [minDate]="minDate"
+          (onSelect)="getSelectedDate($event)"></p-calendar>
       </div>
     </div>
     <div class="card mb-0">
@@ -26,22 +21,12 @@
           <div class="col-md-10">
             <div class="row">
               <div *ngFor="let slot of timeOptions" class="col-md-2 mb-2">
-                <p-button
-                  *ngIf="slot.class !== 'expired'"
-                  [ngClass]="slot === selectedSlot ? 'selected-slot': ''"
+                <p-button *ngIf="slot.class !== 'expired'" [ngClass]="slot === selectedSlot ? 'selected-slot': ''"
                   [styleClass]="
                     isToday ? 'p-button-warning' : 'p-button-success'
-                  "
-                  (onClick)="getSelectedSlot(slot)"
-                  >{{ slot.time }}</p-button
-                >
-                <p-button
-                  styleClass="p-button-secondary p-button-text"
-                  *ngIf="slot.class === 'expired'"
-                  [ngClass]="slot.class"
-                  [disabled]="true"
-                  >{{ slot.time }}</p-button
-                >
+                  " (onClick)="getSelectedSlot(slot)">{{ slot.time }}</p-button>
+                <p-button styleClass="p-button-secondary p-button-text" *ngIf="slot.class === 'expired'"
+                  [ngClass]="slot.class" [disabled]="true">{{ slot.time }}</p-button>
               </div>
             </div>
           </div>
@@ -49,164 +34,52 @@
       </div>
     </div>
     <div class="d-flex justify-content-end btn-block mt-2">
-      <p-button
-        styleClass="p-button-primary"
-        [disabled]="!selectedSlot"
-        (onClick)="showCourses = true"
-        >Continue <i class="ms-3 pi pi-arrow-right"></i
-      ></p-button>
+      <p-button styleClass="p-button-primary" [disabled]="!selectedSlot" (onClick)="onSchedule()">Continue <i
+          class="ms-3 pi pi-arrow-right"></i></p-button>
     </div>
   </div>
   <div class="courses-block" *ngIf="showCourses">
-    <div class="row">
-      <div class="col-md-3">
-        <div class="card">
-          <div class="card-image">
-            <img class="img-fluid" src="/assets/images/html.png" alt="" />
-          </div>
-          <div class="card-body">
-            <div class="header">
-              <h4>Basic Web developer</h4>
+        <ul class="row justify-content-center">
+          <li *ngFor="let plan of planDetails" class="col-md-3">
+            <div class="card">
+              <div class="card-image">
+                <img class="img-fluid" src="/assets/images/html.png" alt="" />
+              </div>
+              <div class="card-body">
+                <div class="header">
+                  <h4>{{plan.title}}</h4>
+                </div>
+              </div>
+              <div class="list-body">
+                <ul>
+                  <li>
+                    <i class="pi pi-stopwatch me-2"></i>
+                    <span>Time: {{plan.duration}} Minutes</span>
+                  </li>
+                  <li>
+                    <i class="pi pi-book me-2"></i>
+                    <span>Technologies: HTML, CSS, Javascript</span>
+                  </li>
+                  <li>
+                    <i class="pi pi-code me-2"></i>
+                    <span>Programming: {{plan.programming}}</span>
+                  </li>
+                  <li>
+                    <i class="pi pi-thumbs-up me-2"></i>
+                    <span>Feedback: Yes</span>
+                  </li>
+                  <li>
+                    <i class="pi pi-money-bill me-2"></i>
+                    <span>Price: {{plan.price}}</span>
+                  </li>
+                </ul>
+              </div>
             </div>
-          </div>
-          <div class="list-body">
-            <ul>
-              <li>
-                <i class="pi pi-stopwatch me-2"></i>
-                <span>Time: 30 Minutes</span>
-              </li>
-              <li>
-                <i class="pi pi-book me-2"></i>
-                <span>Technologies: HTML, CSS, Javascript</span>
-              </li>
-              <li>
-                <i class="pi pi-code me-2"></i>
-                <span>Programming: Yes</span>
-              </li>
-              <li>
-                <i class="pi pi-thumbs-up me-2"></i>
-                <span>Feedback: Yes</span>
-              </li>
-              <li>
-                <i class="pi pi-money-bill me-2"></i>
-                <span>Price: 118</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="card">
-          <div class="card-image">
-            <img class="img-fluid" src="/assets/images/front-end.png" alt="" />
-          </div>
-          <div class="card-body">
-            <div class="header">
-              <h4>Frontend</h4>
-            </div>
-          </div>
-          <div class="list-body">
-            <ul>
-              <li>
-                <i class="pi pi-stopwatch me-2"></i>
-                <span>Time: 30 Minutes</span>
-              </li>
-              <li>
-                <i class="pi pi-book me-2"></i>
-                <span>Technologies: HTML, CSS, Javascript, Angular</span>
-              </li>
-              <li>
-                <i class="pi pi-code me-2"></i>
-                <span>Programming: Yes</span>
-              </li>
-              <li>
-                <i class="pi pi-thumbs-up me-2"></i>
-                <span>Feedback: Yes</span>
-              </li>
-              <li>
-                <i class="pi pi-money-bill me-2"></i>
-                <span>Price: 118</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="card">
-          <div class="card-image">
-            <img class="img-fluid" src="/assets/images/sde.png" alt="" />
-          </div>
-          <div class="card-body">
-            <div class="header">
-              <h4>Full stack developer</h4>
-            </div>
-          </div>
-          <div class="list-body">
-            <ul>
-              <li>
-                <i class="pi pi-stopwatch me-2"></i>
-                <span>Time: 30 Minutes</span>
-              </li>
-              <li>
-                <i class="pi pi-stopwatch me-2"></i>
-                <span>Technologies: Node.js, Mongo, Angular/React</span>
-              </li>
-              <li>
-                <i class="pi pi-code me-2"></i>
-                <span>Programming: Yes</span>
-              </li>
-              <li>
-                <i class="pi pi-thumbs-up me-2"></i>
-                <span>Feedback: Yes</span>
-              </li>
-              <li>
-                <i class="pi pi-money-bill me-2"></i>
-                <span>Price: 118</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="card">
-          <div class="card-image">
-            <img class="img-fluid" src="/assets/images/html.png" alt="" />
-          </div>
-          <div class="card-body">
-            <div class="header">
-              <h4>Basic Web developer</h4>
-            </div>
-          </div>
-          <div class="list-body">
-            <ul>
-              <li>
-                <i class="pi pi-stopwatch me-2"></i>
-                <span>Time: 30 Minutes</span>
-              </li>
-              <li>
-                <i class="pi pi-code me-2"></i>
-                <span>Programming: Yes</span>
-              </li>
-              <li>
-                <i class="pi pi-thumbs-up me-2"></i>
-                <span>Feedback: Yes</span>
-              </li>
-              <li>
-                <i class="pi pi-money-bill me-2"></i>
-                <span>Price: 118</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
+          </li>
+        </ul>
     <div class="d-flex justify-content-end btn-block mt-2">
-      <p-button
-        styleClass="p-button-primary"
-        [disabled]="!selectedSlot"
-        (onClick)="showCourses = true"
-        >Continue <i class="ms-3 pi pi-arrow-right"></i
-      ></p-button>
+      <p-button styleClass="p-button-primary" [disabled]="!selectedSlot" (onClick)="showCourses = true">Continue <i
+          class="ms-3 pi pi-arrow-right"></i></p-button>
     </div>
   </div>
 </div>
