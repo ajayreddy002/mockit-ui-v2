@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing',
@@ -8,11 +8,15 @@ import { Router } from '@angular/router';
 })
 export class LandingComponent implements OnInit{
 constructor(
-  private router: Router
+  private router: Router,
+  private routeSnapshot: ActivatedRoute
 ){}
 ngOnInit(): void {
-  if(window.location.pathname === ''){
-    this.router.navigate(['dashboard'])
+  if(window.location.pathname === '/user' && this.routeSnapshot.snapshot.data['role'] === 'user'){
+    this.router.navigate(['user/dashboard'])
+  }
+  if(window.location.pathname === '/admin' && this.routeSnapshot.snapshot.data['role'] === 'admin'){
+    this.router.navigate(['admin/dashboard'])
   }
 }
 }

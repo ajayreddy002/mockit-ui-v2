@@ -16,9 +16,11 @@ import { ApiService } from './service/api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SuccessComponent } from './transactions/success/success.component';
 import { SharedModule } from './shared/shared.module';
+import { TitleStrategy } from '@angular/router';
+import { TemplatePageTitleStrategy } from './helpers/title-service';
 
 @NgModule({
-  declarations: [AppComponent,LoginComponent, SignupComponent, SuccessComponent],
+  declarations: [AppComponent, LoginComponent, SignupComponent, SuccessComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -41,8 +43,12 @@ import { SharedModule } from './shared/shared.module';
       useClass: ErrorInterceptor,
       multi: true,
     },
-    ApiService
+    ApiService,
+    {
+      provide: TitleStrategy,
+      useClass: TemplatePageTitleStrategy
+    }
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

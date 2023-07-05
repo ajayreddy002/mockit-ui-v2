@@ -12,7 +12,11 @@ const routes: Routes = [
   {
     path: 'user',
     loadChildren: () =>
-      import('./user/user.module').then((mod) => mod.UserModule), canActivate:[AuthGuard]
+      import('./user/user.module').then((mod) => mod.UserModule), canActivate: [AuthGuard], data: { role: 'user' }
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin/admin.module').then(adMod => adMod.AdminModule), canActivate: [AuthGuard], data: { role: 'admin' }
   },
   {
     path: 'success',
@@ -24,4 +28,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
