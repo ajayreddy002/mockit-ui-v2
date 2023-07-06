@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { catchError, of } from 'rxjs';
 import { ApiService } from 'src/app/service/api.service';
+import { LoaderService } from '../service/loader.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private apiService: ApiService,
-    private router: Router
+    private router: Router,
+    private loaderService: LoaderService
   ) { }
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -25,13 +27,19 @@ export class LoginComponent implements OnInit {
     });
   }
   submitLogin() {
+    this.loaderService.showLoader();
     if (this.loginForm.valid) {
       this.isSubmitted = false;
       this.apiService.post('users/login', this.loginForm.value).subscribe((data: any) => {
         localStorage.setItem('token', data.token)
+        this.router.navigate(['user']);
+        this.loaderService.hideLoader();
+      }, (error) => {
+        console.log("Api Error: ", error);
+        this.loaderService.hideLoader();
       });
-      this.router.navigate(['user'])
     }
+    this.loaderService.hideLoader();
     return (this.isSubmitted = true);
   }
 }

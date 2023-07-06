@@ -16,11 +16,14 @@ import { ApiService } from './service/api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SuccessComponent } from './transactions/success/success.component';
 import { SharedModule } from './shared/shared.module';
+import { LoaderService } from './service/loader.service';
+import { LoaderComponent } from './shared/loader/loader.component';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TitleStrategy } from '@angular/router';
 import { TemplatePageTitleStrategy } from './helpers/title-service';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, SignupComponent, SuccessComponent],
+  declarations: [AppComponent, LoginComponent, SignupComponent, SuccessComponent, LoaderComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -29,7 +32,8 @@ import { TemplatePageTitleStrategy } from './helpers/title-service';
     ToastModule,
     ReactiveFormsModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    ProgressSpinnerModule
   ],
   providers: [
     MessageService,
@@ -44,6 +48,7 @@ import { TemplatePageTitleStrategy } from './helpers/title-service';
       multi: true,
     },
     ApiService,
+    LoaderService,
     {
       provide: TitleStrategy,
       useClass: TemplatePageTitleStrategy

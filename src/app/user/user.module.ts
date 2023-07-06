@@ -16,6 +16,7 @@ import { TabViewModule } from 'primeng/tabview';
 import { InputTextModule } from 'primeng/inputtext';
 import { PanelModule } from 'primeng/panel';
 import { ChipsModule } from 'primeng/chips';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 
 @NgModule({
   declarations: [InterviewsComponent, DashboardComponent, MyProfileComponent, InterviewerProfileComponent],
@@ -31,7 +32,8 @@ import { ChipsModule } from 'primeng/chips';
     SidebarModule,
     InputTextModule,
     PanelModule,
-    ChipsModule
+    ChipsModule,
+    AutoCompleteModule
   ],
   providers: [],
 })
