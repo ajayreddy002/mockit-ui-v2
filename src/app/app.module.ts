@@ -19,9 +19,11 @@ import { SharedModule } from './shared/shared.module';
 import { LoaderService } from './service/loader.service';
 import { LoaderComponent } from './shared/loader/loader.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { TitleStrategy } from '@angular/router';
+import { TemplatePageTitleStrategy } from './helpers/title-service';
 
 @NgModule({
-  declarations: [AppComponent,LoginComponent, SignupComponent, SuccessComponent, LoaderComponent],
+  declarations: [AppComponent, LoginComponent, SignupComponent, SuccessComponent, LoaderComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -46,8 +48,12 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
       multi: true,
     },
     ApiService,
-    LoaderService
+    LoaderService,
+    {
+      provide: TitleStrategy,
+      useClass: TemplatePageTitleStrategy
+    }
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

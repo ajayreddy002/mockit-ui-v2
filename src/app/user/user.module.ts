@@ -15,12 +15,11 @@ import { ToastModule } from 'primeng/toast';
 import { TabViewModule } from 'primeng/tabview';
 import { InputTextModule } from 'primeng/inputtext';
 import { PanelModule } from 'primeng/panel';
-import { PlansComponent } from './plans/plans.component';
 import { ChipsModule } from 'primeng/chips';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 
 @NgModule({
-  declarations: [InterviewsComponent, DashboardComponent, LandingComponent, MyProfileComponent, InterviewerProfileComponent, PlansComponent],
+  declarations: [InterviewsComponent, DashboardComponent, MyProfileComponent, InterviewerProfileComponent],
   imports: [
     CommonModule,
     UserRoutingModule,

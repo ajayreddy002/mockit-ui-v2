@@ -11,12 +11,12 @@ const routes: Routes = [
   {
     path: '',
     component: LandingComponent,
+    data: { name: 'Dashboard' },
     children: [
-      { path: 'dashboard', component: DashboardComponent },
-      { path: 'interview', component: InterviewsComponent },
-      { path: 'profile', component: MyProfileComponent },
-      { path: 'interviewer', component: InterviewerProfileComponent },
-      { path: 'plans', component: PlansComponent }
+      { path: 'dashboard', component: DashboardComponent, data: { name: 'Dashboard' }, title: 'Dashboard' },
+      { path: 'interview', component: InterviewsComponent, data: { name: 'Interview' }, title: 'Interview' },
+      { path: 'profile', component: MyProfileComponent, data: { name: 'Profile' }, title: 'Profile' },
+      { path: 'interviewer', component: InterviewerProfileComponent, data: { name: 'Interviewer' }, title: 'Interviewer' }
     ],
   },
 ];
@@ -25,4 +25,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class UserRoutingModule {}
+export class UserRoutingModule { }

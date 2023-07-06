@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import jwt_decode from 'jwt-decode';
+import { filter, map } from 'rxjs';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,21 +13,39 @@ export class SidebarComponent implements OnInit {
   pathName = '';
   token: any;
   role: any;
-  decoded:any;
+  decoded: any;
   myTableData: any;
   myTableColumns: any;
-  constructor(private router: Router) {
+  pageName: any;
+  constructor(
+    private router: Router) {
     this.pathName = router.url.split('/')[1];
-    // if (router.url.includes('interview')) {
-    //   this.pathName = 'Book interview';
-    // } else {
-    //   this.pathName = router.url.split('/')[1];
-    // }
   }
   ngOnInit(): void {
     this.token = localStorage.getItem('token');
     this.decoded = jwt_decode(this.token);
-    this.role = this.decoded.role
+    this.role = this.decoded.role;
+    this.router.events
+      .pipe(
+        filter((event) => event instanceof NavigationEnd),
+        map(() => {
+          let route: ActivatedRoute = this.router.routerState.root;
+          let routeName = '';
+          while (route!.firstChild) {
+            route = route.firstChild;
+          }
+          if (route.snapshot.data['name']) {
+            routeName = route!.snapshot.data['name'];
+          }
+          return routeName;
+        })
+      )
+      .subscribe((title: string) => {
+        if (title) {
+          this.pageName = title
+        }
+      });
+
   }
 
   logout() {
