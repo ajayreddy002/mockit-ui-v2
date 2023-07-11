@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
+import { Plan } from 'src/app/models/plan.model';
 import { ApiService } from 'src/app/service/api.service';
 import { LoaderService } from 'src/app/service/loader.service';
 
@@ -17,10 +18,10 @@ export class InterviewsComponent implements OnInit {
   today = new Date();
   isToday = true;
   selectedSlot!: any;
-  showCourses = false;
-  planDetails: any;
+  showPlans = false;
+  planDetails: Plan[] = [];
 
-  constructor(private apiService: ApiService, private loaderService: LoaderService){}
+  constructor(private apiService: ApiService, private loaderService: LoaderService) { }
   ngOnInit(): void {
     this.getTimeSlots();
   }
@@ -45,7 +46,7 @@ export class InterviewsComponent implements OnInit {
     this.timeOptions = [];
     this.getTimeSlots();
   }
-  getSelectedSlot(slot: string){
+  getSelectedSlot(slot: string) {
     console.log(slot)
     // Need to add moment(slot) to get date string
     this.selectedSlot = slot;
@@ -53,14 +54,23 @@ export class InterviewsComponent implements OnInit {
 
   onSchedule() {
     this.loaderService.showLoader();
-    this.showCourses = true;
-    this.apiService.get('common/plan').subscribe((res) => {
+    this.showPlans = true;
+    this.apiService.get('common/plan').subscribe((res: any) => {
       console.log(res);
+      res.map((item: Plan) => {
+        item.isSelected = false
+      });
       this.planDetails = res;
       this.loaderService.hideLoader();
     }, (error) => {
       console.log("Api Error: ", error);
       this.loaderService.hideLoader();
+    })
+  }
+  onPlanSelect(plan: Plan) {
+    this.planDetails = this.planDetails.map(item => {
+      item._id === plan._id ? item.isSelected = true : item.isSelected = false
+      return item;
     })
   }
 }

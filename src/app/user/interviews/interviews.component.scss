@@ -6,49 +6,61 @@
     margin-bottom: 1rem;
     box-shadow: 0px 4px 30px rgba(221, 224, 255, 0.54);
     border-radius: 12px;
+
     .card-header {
       background: transparent;
       border: none;
+
       h3 {
         font-size: 1.2rem;
         margin: 0;
         font-weight: 500;
         font-family: Poppins, sans-serif;
+
         span {
           font-size: 0.75rem;
         }
       }
     }
+
     .card-body {
       display: flex;
+
       .slot-block {
         display: grid;
         grid-template-columns: repeat(11, 1fr);
       }
+
       .expired {
         text-decoration: line-through;
       }
+
       .selected-slot {
-        .p-button{
+        .p-button {
           background: #043004 !important;
         }
       }
     }
   }
+
   ul {
     list-style: none;
   }
+
   .row {
     padding: 0;
   }
+
   .courses-block {
     .card {
       cursor: pointer;
+
       .card-body {
         padding-left: 10px;
         padding-right: 10px;
+
         .header {
-          h4{
+          h4 {
             font-size: 1rem;
             color: #000;
             font-weight: 500;
@@ -57,11 +69,13 @@
           }
         }
       }
+
       .list-body {
         ul {
           padding: 0;
           padding-left: 10px;
           list-style: none;
+
           li {
             display: flex;
             font-size: 15px;
@@ -69,6 +83,7 @@
             align-items: center;
             padding: 5px 0;
             font-family: Poppins, sans-serif;
+
             i {
               color: #3b82f6;
               font-size: 16px;
@@ -76,26 +91,43 @@
           }
         }
       }
+
+      &.selected {
+        .header {
+          h4 {
+            color: #FFFFFF !important;
+          }
+        }
+        color: #FFFFFF;
+        background-color: #22C55E;
+        .list-body ul li i {
+          color: #FFFFFF;
+        }
+      }
     }
+
     .card-image {
       max-height: 4rem;
       max-width: 4rem;
     }
   }
 }
+
 ::ng-deep .card-body {
   .p-button {
     font-size: 13px !important;
     font-weight: 500;
     font-family: Poppins, sans-serif;
   }
+
   .selected-slot {
-    .p-button{
+    .p-button {
       background: #043004 !important;
       border: #043004 !important;
     }
   }
 }
+
 ::ng-deep .btn-block {
   .p-button {
     padding: 10px 20px;

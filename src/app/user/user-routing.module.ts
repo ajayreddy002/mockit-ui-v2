@@ -5,7 +5,7 @@ import { InterviewsComponent } from './interviews/interviews.component';
 import { LandingComponent } from './landing/landing.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { InterviewerProfileComponent } from './interviewer-profile/interviewer-profile.component';
-import { PlansComponent } from './plans/plans.component';
+import { PlansComponent } from '../admin/plans/plans.component';
 
 const routes: Routes = [
   {

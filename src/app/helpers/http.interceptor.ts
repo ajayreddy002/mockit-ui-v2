@@ -18,7 +18,8 @@ export class AppInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
     const newHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
-      token: localStorage.getItem('token') ? localStorage.getItem('token') as string : ''
+      token: localStorage.getItem('token') ? localStorage.getItem('token') as string : '',
+      'Access-Control-Allow-Origin': '*'
     });
     //clone request and change header
     let clone = request.clone({ headers: newHeaders });

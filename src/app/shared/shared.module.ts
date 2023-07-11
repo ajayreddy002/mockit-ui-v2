@@ -13,6 +13,7 @@ import { CommonTableComponent } from './common-table/common-table.component';
 import { LandingComponent } from '../user/landing/landing.component';
 import { PanelModule } from 'primeng/panel';
 import { ChipsModule } from 'primeng/chips';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { ChipsModule } from 'primeng/chips';
     PanelModule,
     ChipsModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    AutoCompleteModule
   ],
   exports: [
     SidebarComponent,
@@ -43,7 +45,8 @@ import { ChipsModule } from 'primeng/chips';
     PanelModule,
     ChipsModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    AutoCompleteModule
   ],
 })
 export class SharedModule { }
