@@ -17,9 +17,10 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PanelModule } from 'primeng/panel';
 import { ChipsModule } from 'primeng/chips';
 import { AutoCompleteModule } from 'primeng/autocomplete';
+import { SelectPlanComponent } from './select-plan/select-plan.component';
 
 @NgModule({
-  declarations: [InterviewsComponent, DashboardComponent, MyProfileComponent, InterviewerProfileComponent],
+  declarations: [InterviewsComponent, DashboardComponent, MyProfileComponent, InterviewerProfileComponent, SelectPlanComponent],
   imports: [
     CommonModule,
     UserRoutingModule,

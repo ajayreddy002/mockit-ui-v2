@@ -2,14 +2,19 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { LoaderService } from '../service/loader.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ErrorHandlerService {
-  constructor(private messageService: MessageService, private router: Router) { }
+  constructor(
+    private messageService: MessageService, 
+    private router: Router,
+    private loaderService: LoaderService) { }
   public handleError(err: HttpErrorResponse) {
     let errorMessage: string;
+    this.loaderService.hideLoader();
     if (err.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
       errorMessage = `An error occurred: ${err.error.message}`;

@@ -34,52 +34,9 @@
       </div>
     </div>
     <div class="d-flex justify-content-end btn-block mt-2">
-      <p-button styleClass="p-button-primary" [disabled]="!selectedSlot" (onClick)="onSchedule()">Continue <i
+      <p-button styleClass="p-button-primary" [disabled]="!selectedSlot" (onClick)="onContinue()">Continue <i
           class="ms-3 pi pi-arrow-right"></i></p-button>
     </div>
   </div>
-  <div class="courses-block" *ngIf="showPlans">
-        <ul class="row">
-          <li *ngFor="let plan of planDetails" class="col-md-3" (click)="onPlanSelect(plan)">
-            <div class="card"  [ngClass]="{'selected': plan.isSelected}">
-              <div class="card-image">
-                <img class="img-fluid" src="/assets/images/html.png" alt="" />
-              </div>
-              <div class="card-body">
-                <div class="header">
-                  <h4>{{plan.title}}</h4>
-                </div>
-              </div>
-              <div class="list-body">
-                <ul>
-                  <li>
-                    <i class="pi pi-stopwatch me-2"></i>
-                    <span>Time: {{plan.duration}} Minutes</span>
-                  </li>
-                  <li>
-                    <i class="pi pi-book me-2"></i>
-                    <span>Technologies: HTML, CSS, Javascript</span>
-                  </li>
-                  <li>
-                    <i class="pi pi-code me-2"></i>
-                    <span>Programming: {{plan.programming}}</span>
-                  </li>
-                  <li>
-                    <i class="pi pi-thumbs-up me-2"></i>
-                    <span>Feedback: Yes</span>
-                  </li>
-                  <li>
-                    <i class="pi pi-money-bill me-2"></i>
-                    <span>Price: {{plan.price}}</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </li>
-        </ul>
-    <div class="d-flex justify-content-end btn-block mt-2">
-      <p-button styleClass="p-button-primary" [disabled]="!selectedSlot" (onClick)="showPlans = true">Continue <i
-          class="ms-3 pi pi-arrow-right"></i></p-button>
-    </div>
-  </div>
+  
 </div>

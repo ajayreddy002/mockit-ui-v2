@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { Plan } from 'src/app/models/plan.model';
-import { ApiService } from 'src/app/service/api.service';
-import { LoaderService } from 'src/app/service/loader.service';
 
 @Component({
   selector: 'app-interviews',
@@ -20,8 +19,11 @@ export class InterviewsComponent implements OnInit {
   selectedSlot!: any;
   showPlans = false;
   planDetails: Plan[] = [];
+  selectedTimeSlot!: moment.Moment;
 
-  constructor(private apiService: ApiService, private loaderService: LoaderService) { }
+  constructor(
+    private router: Router
+  ) { }
   ngOnInit(): void {
     this.getTimeSlots();
   }
@@ -46,31 +48,15 @@ export class InterviewsComponent implements OnInit {
     this.timeOptions = [];
     this.getTimeSlots();
   }
-  getSelectedSlot(slot: string) {
-    console.log(slot)
-    // Need to add moment(slot) to get date string
+  getSelectedSlot(slot: any) {
     this.selectedSlot = slot;
+    localStorage.setItem('selectedDate', moment(this.date).format('YYYY-MM-DD'))
+    localStorage.setItem('startTime', moment(slot.time, 'hh:mm A').format('hh:mm a'))
+    localStorage.setItem('endTime', moment(slot.time, 'hh:mm A').add(30, 'minutes').format('hh:mm a'))
   }
 
-  onSchedule() {
-    this.loaderService.showLoader();
-    this.showPlans = true;
-    this.apiService.get('common/plan').subscribe((res: any) => {
-      console.log(res);
-      res.map((item: Plan) => {
-        item.isSelected = false
-      });
-      this.planDetails = res;
-      this.loaderService.hideLoader();
-    }, (error) => {
-      console.log("Api Error: ", error);
-      this.loaderService.hideLoader();
-    })
+  onContinue() {
+    this.router.navigate(['user/select-plan']);
   }
-  onPlanSelect(plan: Plan) {
-    this.planDetails = this.planDetails.map(item => {
-      item._id === plan._id ? item.isSelected = true : item.isSelected = false
-      return item;
-    })
-  }
+
 }
