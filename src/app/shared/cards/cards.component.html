@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-md-3 col-lg-3" *ngFor="let cardData of cardsData">
+    <div class="card dashboard-cards">
+      <div class="row">
+        <div class="col-4 d-flex">
+          <div class="icon-block">
+            <i class="bi {{cardData.icon}}" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div class="col-8">
+          <div class="count-block">
+            <h3>{{cardData.title}}</h3>
+            <p>{{cardData.count}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,23 +1,48 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import jwt_decode from "jwt-decode";
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  baseAPIUrl = environment.baseAPIUrl;
+  constructor(
+    private router: Router,
+    private http: HttpClient
+  ) { }
 
-  constructor() { }
   isloggedIn() {
     return !!localStorage.getItem('token')
   }
-  hasPermission(role: string): boolean{
+
+  hasPermission(role: string): boolean {
     const token = localStorage.getItem('token') as string;
-    if(token !== (null || undefined)){
+    if (token !== (null || undefined)) {
       const decoded = jwt_decode(token) as any;
-      if(decoded.role === role) {
-        return true
-      }
+      return decoded.role === role
     }
     return false;
+  }
+
+  // For initial navigation after login
+  navigateUser() {
+    const token = localStorage.getItem('token') as string;
+    const decoded = jwt_decode(token) as any;
+    if (token !== (null || undefined)) {
+      switch (decoded.role) {
+        case 'user':
+          this.router.navigate(['user'])
+          break;
+        case 'admin':
+          this.router.navigate(['admin'])
+          break;
+        default:
+          this.router.navigate(['login'])
+          break;
+      }
+    }
   }
 }

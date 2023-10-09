@@ -10,16 +10,18 @@ import { ChipsModule } from 'primeng/chips';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { DialogModule } from 'primeng/dialog';
 import { CardModule } from 'primeng/card';
+import { TableModule } from 'primeng/table';
 
 import { SharedRoutingModule } from './shared-routing.module';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonTableComponent } from './common-table/common-table.component';
 import { LandingComponent } from '../user/landing/landing.component';
+import { CardsComponent } from './cards/cards.component';
 
 
 @NgModule({
-  declarations: [SidebarComponent, CommonTableComponent, LandingComponent],
+  declarations: [SidebarComponent, CommonTableComponent, LandingComponent, CardsComponent],
   imports: [
     CommonModule,
     SharedRoutingModule,
@@ -35,7 +37,8 @@ import { LandingComponent } from '../user/landing/landing.component';
     CommonModule,
     AutoCompleteModule,
     DialogModule,
-    CardModule
+    CardModule,
+    TableModule
   ],
   exports: [
     SidebarComponent,
@@ -52,7 +55,10 @@ import { LandingComponent } from '../user/landing/landing.component';
     CommonModule,
     AutoCompleteModule,
     DialogModule,
-    CardModule
+    CardModule,
+    TableModule,
+    CommonTableComponent,
+    CardsComponent
   ],
 })
 export class SharedModule { }

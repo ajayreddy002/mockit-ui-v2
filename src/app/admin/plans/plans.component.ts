@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { TableColumn } from 'src/app/models/common.model';
+import { Plan } from 'src/app/models/plan.model';
 import { ApiService } from 'src/app/service/api.service';
 import { LoaderService } from 'src/app/service/loader.service';
+import { PlanService } from 'src/app/service/plan-service';
 
 interface AutoCompleteCompleteEvent {
   originalEvent: Event;
@@ -14,7 +16,7 @@ interface AutoCompleteCompleteEvent {
   styleUrls: ['./plans.component.scss']
 })
 export class PlansComponent implements OnInit {
-
+  showForm = false;
   plansForm!: FormGroup;
   isValid = false;
   allSkills = [
@@ -95,31 +97,41 @@ export class PlansComponent implements OnInit {
   selectedSkills !: any[];
 
   filteredSkills!: any[];
-
+  plansData: Plan[] = [];
+  tableColumns: TableColumn[] = [
+    {field: 'category', header: 'Category'},
+    {field: 'title', header: 'Title'},
+    {field: 'duration', header: 'Duration'},
+    {field: 'objective', header: 'Objective'},
+    {field: 'programming', header: 'Programming'},
+  ];
   constructor(
     private formBuilder: FormBuilder,
     private apiService: ApiService,
-    private router: Router,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    private planService: PlanService
   ) { }
 
   ngOnInit() {
     this.plansForm = this.formBuilder.group({
-      category: ['', Validators.required],
+      interviewType: ['', Validators.required],
       title: ['', [Validators.required, Validators.minLength(5)]],
-      duration: ['30', [Validators.required]],
       description: ['', Validators.required],
-      programming: ['', Validators.required],
       skills: ['', Validators.required],
       price: ['', Validators.required],
     });
+    this.getAllPlans();
+  }
+
+  getAllPlans() {
+    this.planService.getPlans().subscribe(res => this.plansData = res)
   }
 
   filterSkill(event: AutoCompleteCompleteEvent) {
-    let filtered: any[] = [];
-    let query = event.query;
+    const filtered: any[] = [];
+    const query = event.query;
     for (let i = 0; i < this.allSkills.length; i++) {
-      let country = (this.allSkills as any[])[i];
+      const country = (this.allSkills as any[])[i];
       if (country.label.toLowerCase().indexOf(query.toLowerCase()) == 0) {
         filtered.push(country);
       }
@@ -134,13 +146,11 @@ export class PlansComponent implements OnInit {
       this.plansForm.get('programming')?.value === 'yes' ? this.plansForm.get('programming')?.setValue(true) : this.plansForm.get('programming')?.setValue(false)
       this.isValid = false;
       this.apiService.post('common/plan', this.plansForm.value).subscribe((res) => {
-        console.log(res);
         this.loaderService.hideLoader();
       }, (error) => {
         console.log("Api Error: ", error);
         this.loaderService.hideLoader();
       })
-      this.router.navigate(['/user/interview'])
     } else {
       console.log("form Invalid");
       this.isValid = true;

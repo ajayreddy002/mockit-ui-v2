@@ -6,39 +6,45 @@
     <div class="side-menu">
       <ul>
         <li>
-          <a routerLink="/user/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <a routerLink="/{{role}}/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
             <i class="pi pi-home" aria-hidden="true"></i>
             Dashboard
           </a>
         </li>
         <li>
-          <a routerLink="/user/interview" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <a routerLink="/{{role}}/interview" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
             <i class="pi pi-calendar" aria-hidden="true"></i>
             Interviews
           </a>
         </li>
-        <li *ngIf="role != 'user'">
-          <a>
-            <i class="pi pi-share-alt" aria-hidden="true"></i>
-            Refer and Earn
+        <!-- <li *ngIf="role === 'interviewer'">
+          <a routerLink="/{{role}}/interviewer" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <i class="pi pi-user-edit" aria-hidden="true"></i>
+            Interviewer Profile
+          </a>
+        </li> -->
+        <li *ngIf="role === 'admin'">
+          <a routerLink="/{{role}}/user-list" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <i class="pi pi-users" aria-hidden="true"></i>
+            Users
+          </a>
+        </li>
+        <li *ngIf="role === 'admin'">
+          <a routerLink="/{{role}}/plans" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <i class="pi pi-slack" aria-hidden="true"></i>
+            Plans
           </a>
         </li>
         <li>
-          <a routerLink="/user/profile" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <a routerLink="/{{role}}/profile" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
             <i class="pi pi-user" aria-hidden="true"></i>
             My Profile
           </a>
         </li>
-        <li *ngIf="role != 'user'">
-          <a routerLink="/user/interviewer" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-            <i class="pi pi-user-edit" aria-hidden="true"></i>
-            Interviewer Profile
-          </a>
-        </li>
-        <li *ngIf="role === 'admin'">
-          <a routerLink="/user/plans" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-            <i class="pi pi-slack" aria-hidden="true"></i>
-            Plans
+        <li *ngIf="role === 'interviewer' || role === 'user'">
+          <a>
+            <i class="pi pi-share-alt" aria-hidden="true"></i>
+            Refer and Earn
           </a>
         </li>
       </ul>
@@ -54,13 +60,14 @@
       </div>
       <div class="topbar-end">
         <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-          <p-avatar label="V" styleClass="mr-2" size="medium"
-            [style]="{ 'background-color': '#2196F3', color: '#ffffff' }" shape="circle"></p-avatar>
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" href="#" (click)="logout()">Logout</a></li>
-            </ul>
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <p-avatar label="V" styleClass="mr-2" size="medium"
+              [style]="{ 'background-color': '#2196F3', color: '#ffffff' }" shape="circle"></p-avatar>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
+          </ul>
         </div>
       </div>
     </div>

@@ -7,12 +7,14 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PlansComponent } from 'src/app/admin/plans/plans.component';
 import { ChipsModule } from 'primeng/chips';
 import { FormsModule } from '@angular/forms';
+import { UserListComponent } from './user-list/user-list.component';
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
-    PlansComponent
+    PlansComponent,
+    UserListComponent
   ],
   imports: [
     CommonModule,

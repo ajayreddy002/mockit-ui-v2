@@ -1,5 +1,12 @@
 <div class="interview-block">
-  <div *ngIf="!showPlans">
+  <div class="interviews-list" *ngIf="!showInterviewForm">
+    <p-button label="Schdule interview" icon="pi pi-plus" (onClick)="showInterviewForm = true" class="d-flex justify-content-end"
+      styleClass="p-button-sm p-button"></p-button>
+    <div class="table-block mt-3">
+      <app-common-table [tableColumns]="tableColumns" [tableData]="userInterviews"></app-common-table>
+    </div>
+  </div>
+  <div *ngIf="showInterviewForm">
     <div class="card d-flex justify-content-center align-items-center">
       <div>
         <label for="selectDate" class="me-3">Select Date:</label>
@@ -38,5 +45,5 @@
           class="ms-3 pi pi-arrow-right"></i></p-button>
     </div>
   </div>
-  
+
 </div>

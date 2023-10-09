@@ -1,0 +1,72 @@
+.dashboard-cards {
+    max-height: 100px;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    transition: .4s;
+
+    &:hover {
+        background-image: linear-gradient(135deg, #868CFF 0%, #4318FF 100%);
+        transition: all 0.3s ease;
+
+        .icon-block {
+            background: var(--white-color);
+
+            i {
+                color: #4318FF;
+            }
+        }
+
+        .count-block {
+            h3 {
+                color: var(--white-color);
+                font-weight: 500;
+            }
+
+            p {
+                color: var(--white-color);
+            }
+        }
+    }
+
+    .icon-block {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 56px;
+        height: 56px;
+        background-image: linear-gradient(135deg, #868CFF 0%, #4318FF 100%);
+        margin: 0 auto;
+        border-radius: 50%;
+        transform: translate(10px, 10px);
+
+        i {
+            color: #ffffff;
+            font-size: 24px;
+        }
+    }
+
+    .count-block {
+        padding-top: 15px;
+
+        h3 {
+            color: #a3aed0;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 20px;
+            letter-spacing: -0.32px;
+            margin-bottom: 0;
+        }
+
+        p {
+            color: #1B2559;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 30px;
+            letter-spacing: -0.32px;
+        }
+    }
+}

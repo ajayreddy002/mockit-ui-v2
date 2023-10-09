@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, Scroll } from '@angular/router';
 import jwt_decode from 'jwt-decode';
 import { filter, map } from 'rxjs';
 
@@ -27,15 +27,15 @@ export class SidebarComponent implements OnInit {
     this.role = this.decoded.role;
     this.router.events
       .pipe(
-        filter((event) => event instanceof NavigationEnd),
+        filter((event) => event instanceof NavigationEnd || event instanceof Scroll),
         map(() => {
           let route: ActivatedRoute = this.router.routerState.root;
           let routeName = '';
-          while (route!.firstChild) {
+          while (route?.firstChild) {
             route = route.firstChild;
           }
           if (route.snapshot.data['name']) {
-            routeName = route!.snapshot.data['name'];
+            routeName = route?.snapshot.data['name'];
           }
           return routeName;
         })

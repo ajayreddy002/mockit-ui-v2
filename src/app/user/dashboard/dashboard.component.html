@@ -1,9 +1,10 @@
 <div class="dashboard-block">
-  <div class="container empty-res-block">
+  <app-cards [cardsData]="cardCountInfo"></app-cards>
+  <div class="container empty-res-block" *ngIf="showEmptyBlock">
     <div
       class="d-flex pt-5 flex-column align-items-center justify-content-center"
     >
-      <img src="../../../assets/images/no-meetings.png" alt="" />
+      <img src="/assets/images/no-meetings.png" alt="" />
       <h3>
         Currently you don’t have any interviews scheduled. Schedule your
         interview to begin!

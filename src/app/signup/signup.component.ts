@@ -39,7 +39,7 @@ export class SignupComponent implements OnInit {
       this.apiService.post("users/create", this.CandidateForm.value).subscribe((res) => {
         console.log(res);
         this.router.navigate(['/login'])
-        this.loaderService.showLoader();
+        this.loaderService.hideLoader();
       }, (error) => {
         console.log("Api Error: ", error);
         this.loaderService.hideLoader();
