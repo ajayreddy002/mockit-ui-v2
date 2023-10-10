@@ -7,9 +7,9 @@ import { UserRoutingModule } from './user-routing.module';
 import { InterviewsComponent } from './interviews/interviews.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SharedModule } from '../shared/shared.module';
-import { LandingComponent } from './landing/landing.component';
+import { LandingComponent } from '../shared/landing/landing.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
-import { InterviewerProfileComponent } from './interviewer-profile/interviewer-profile.component';
+import { InterviewerProfileComponent } from '../interviewer/interviewer-profile/interviewer-profile.component';
 import { StepsModule } from 'primeng/steps';
 import { ToastModule } from 'primeng/toast';
 import { TabViewModule } from 'primeng/tabview';
@@ -20,7 +20,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { SelectPlanComponent } from './select-plan/select-plan.component';
 
 @NgModule({
-  declarations: [InterviewsComponent, DashboardComponent, MyProfileComponent, InterviewerProfileComponent, SelectPlanComponent],
+  declarations: [InterviewsComponent, DashboardComponent, MyProfileComponent, SelectPlanComponent],
   imports: [
     CommonModule,
     UserRoutingModule,

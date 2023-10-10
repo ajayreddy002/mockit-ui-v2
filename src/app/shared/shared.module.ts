@@ -16,7 +16,7 @@ import { SharedRoutingModule } from './shared-routing.module';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonTableComponent } from './common-table/common-table.component';
-import { LandingComponent } from '../user/landing/landing.component';
+import { LandingComponent } from './landing/landing.component';
 import { CardsComponent } from './cards/cards.component';
 
 

@@ -21,9 +21,10 @@ import { LoaderComponent } from './shared/loader/loader.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TitleStrategy } from '@angular/router';
 import { TemplatePageTitleStrategy } from './helpers/title-service';
+import { DashboardComponent } from './interviewer/dashboard/dashboard.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, SignupComponent, SuccessComponent, LoaderComponent],
+  declarations: [AppComponent, LoginComponent, SignupComponent, SuccessComponent, LoaderComponent, DashboardComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -39,10 +39,19 @@ export class AuthService {
         case 'admin':
           this.router.navigate(['admin'])
           break;
+        case 'interviewer':
+          this.router.navigate(['interviewer'])
+          break;
         default:
           this.router.navigate(['login'])
           break;
       }
     }
+  }
+  isTokenExpired(token: string): boolean {
+    const decoded = jwt_decode(token) as any;
+    const now = Date.now() / 1000; // Convert current time to seconds since epoch
+    console.log(decoded)
+    return decoded.exp < now;
   }
 }

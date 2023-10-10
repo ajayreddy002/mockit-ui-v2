@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { InterviewsComponent } from './interviews/interviews.component';
-import { LandingComponent } from './landing/landing.component';
+import { LandingComponent } from '../shared/landing/landing.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
-import { InterviewerProfileComponent } from './interviewer-profile/interviewer-profile.component';
+import { InterviewerProfileComponent } from '../interviewer/interviewer-profile/interviewer-profile.component';
 import { SelectPlanComponent } from './select-plan/select-plan.component';
 
 const routes: Routes = [

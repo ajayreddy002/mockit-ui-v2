@@ -5,48 +5,14 @@
     </div>
     <div class="side-menu">
       <ul>
-        <li>
-          <a routerLink="/{{role}}/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-            <i class="pi pi-home" aria-hidden="true"></i>
-            Dashboard
-          </a>
-        </li>
-        <li>
-          <a routerLink="/{{role}}/interview" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-            <i class="pi pi-calendar" aria-hidden="true"></i>
-            Interviews
-          </a>
-        </li>
-        <!-- <li *ngIf="role === 'interviewer'">
-          <a routerLink="/{{role}}/interviewer" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-            <i class="pi pi-user-edit" aria-hidden="true"></i>
-            Interviewer Profile
-          </a>
-        </li> -->
-        <li *ngIf="role === 'admin'">
-          <a routerLink="/{{role}}/user-list" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-            <i class="pi pi-users" aria-hidden="true"></i>
-            Users
-          </a>
-        </li>
-        <li *ngIf="role === 'admin'">
-          <a routerLink="/{{role}}/plans" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-            <i class="pi pi-slack" aria-hidden="true"></i>
-            Plans
-          </a>
-        </li>
-        <li>
-          <a routerLink="/{{role}}/profile" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-            <i class="pi pi-user" aria-hidden="true"></i>
-            My Profile
-          </a>
-        </li>
-        <li *ngIf="role === 'interviewer' || role === 'user'">
-          <a>
-            <i class="pi pi-share-alt" aria-hidden="true"></i>
-            Refer and Earn
-          </a>
-        </li>
+        <ng-container *ngFor="let sideMenu of sideMenuData">
+          <li>
+            <a [routerLink]="sideMenu.routerLink" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+              <i class="pi {{sideMenu.icon}}" aria-hidden="true"></i>
+              {{sideMenu.name}}
+            </a>
+          </li>
+        </ng-container>
       </ul>
     </div>
   </div>
@@ -69,6 +35,22 @@
             <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
           </ul>
         </div>
+      </div>
+    </div>
+    <div class="verify-email my-3 card" *ngIf="showMailVerifyAlert">
+      <div class="alert-msg-text">
+        <h4>Please verify your email</h4>
+        <h5>It seems like you have not verified your email, please verify the link which shred to your email</h5>
+      </div>
+      <div class="alert-btns">
+        <button>Resend email</button>
+        <button>Update email</button>
+      </div>
+      <div class="p-inputgroup mw-50">
+        <input pInputText placeholder="Email id" />
+        <span class="p-inputgroup-addon">
+          Update
+        </span>
       </div>
     </div>
     <p-toast></p-toast>

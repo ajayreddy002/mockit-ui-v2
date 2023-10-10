@@ -16,9 +16,9 @@ export class InterviewerProfileComponent implements OnInit {
   rForm!: FormGroup;
   ipForm!: FormGroup;
   step: any = 1;
-  isStep1Valid: boolean = false;
-  isStep4Valid: boolean = false;
-  isStep5Valid: boolean = false;
+  isStep1Valid = false;
+  isStep4Valid = false;
+  isStep5Valid = false;
 
   degrees: string[] = ['BTech', 'BE', 'MCA', 'MBA', 'MTech', 'ME', 'Others']; // Available degree options
   courses: { [key: string]: string[] } = {
@@ -39,6 +39,7 @@ export class InterviewerProfileComponent implements OnInit {
     this.pdForm = this.fb.group({
       fname: ['', [Validators.required, Validators.minLength(3)]],
       lname: ['', [Validators.required, Validators.minLength(3)]],
+      // eslint-disable-next-line no-useless-escape
       email: ['', [Validators.required, Validators.email, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)]],
       mobile: ['', [Validators.required, Validators.pattern(/^[9876]\d{9}$/)]],
       dob: ['', Validators.required],

@@ -12,7 +12,8 @@ export class AuthGuard implements CanActivate {
 
   constructor(private authService: AuthService, private router: Router, private messageService: MessageService){}
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    if(this.authService.isloggedIn() && this.authService.hasPermission(route.data['role'])){
+    const token = localStorage.getItem('token') as string;
+    if(this.authService.isloggedIn() && this.authService.hasPermission(route.data['role']) && !this.authService.isTokenExpired(token)){
       return true
     }
     this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Not authorized!' });

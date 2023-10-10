@@ -19,6 +19,10 @@ const routes: Routes = [
     loadChildren: () => import('./admin/admin.module').then(adMod => adMod.AdminModule), canActivate: [AuthGuard], data: { role: 'admin' }
   },
   {
+    path: 'interviewer',
+    loadChildren: () => import('./interviewer/interviewer.module').then(intModule => intModule.InterviewerModule), canActivate: [AuthGuard], data: { role: 'interviewer' }
+  },
+  {
     path: 'success',
     component: SuccessComponent
   }
